@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "artworks.apps.ArtworksConfig",
     "panelists.apps.PanelistsConfig",
-    # "critique.apps.CritiqueConfig",
+    "guest.apps.GuestConfig",
     "widget_tweaks",
 ]
 
