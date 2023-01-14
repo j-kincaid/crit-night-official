@@ -2,11 +2,6 @@
 {% block content %}
 
 <div class ="container text-center">
-
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search Artworks" aria-label="Artworks" aria-describedby="basic-addon2">
-        <span class="input-group-text" id="basic-addon2">Search</span>
-      </div>
       
       <h2>Voting Results</h2>
             <div class="container text-center">
@@ -23,11 +18,11 @@
             <div class="col">Final Score</div>
         </div>
         <div class="row row-cols-6">
-            <div class="col"> {{artwork.title}}</div>
-            <div class="col"> {{artwork.vote_ratio}}%</div>
-            <div class="col"> {{artwork.vote_ratio}}%</div>
-            <div class="col"> {{artwork.vote_ratio}}%</div>
-            <div class="col"> {{artwork.vote_total}}%</div>
+            <div class="col">{{artwork.title}}</div>
+            <div class="col">{{artwork.vote_ratio}}%</div>
+            <div class="col">{{artwork.vote_ratio}}%</div>
+            <div class="col">{{artwork.vote_ratio}}%</div>
+            <div class="col">{{artwork.vote_total}}%</div>
         </div>
 
         {% endfor %}
