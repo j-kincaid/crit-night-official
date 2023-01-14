@@ -1,0 +1,94 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class ="container text-center">
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search Artworks" aria-label="Artworks" aria-describedby="basic-addon2">
+        <span class="input-group-text" id="basic-addon2">Search</span>
+      </div>
+      
+      <h2>Voting Results</h2>
+            <div class="container text-center">
+             
+    <div class="container"> 
+        {% comment %} <div class="justify-content-md-center"> {% endcomment %}
+
+          {% for artwork in artworks %}
+        <div class="row row-cols-6">
+            <div class="col">Artwork</div>
+            <div class="col">Originality</div>
+            <div class="col">Technique</div>
+            <div class="col">Impact</div>
+            <div class="col">Final Score</div>
+        </div>
+        <div class="row row-cols-6">
+            <div class="col"> {{artwork.title}}</div>
+            <div class="col"> {{artwork.vote_ratio}}%</div>
+            <div class="col"> {{artwork.vote_ratio}}%</div>
+            <div class="col"> {{artwork.vote_ratio}}%</div>
+            <div class="col"> {{artwork.vote_total}}%</div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+           
+
+
+
+              <hr>
+<h3>Thumbnail Images</h3>
+            {% for artwork in artworks %}
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <img src="{{ artwork.featured_image.url }}" class="card-img-top img-thumbnail"  alt="detail of artwork">
+                        <div class="card-body">
+                            <h5 class="card-title">{{artwork.title}}</h5>
+                            <p class="card-text">{{artwork.description}}</p>
+                            <p class="card-text">Score {{artwork.vote_ratio}}%</p>
+                            <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
+                            <a href="{% url 'artwork' artwork.id %}">View</a>
+                            <a href="{% url 'update-artwork' artwork.id %}">Edit</a>
+                            <a href="{% url 'delete-artwork' artwork.id %}">Delete</a>
+                        </div>
+
+                        <div>
+                            <p>Voted on criteria of:</p>
+                            {% for tag in artwork.tags.all %}
+                                <span class="badge text-bg-light">
+
+                                <small>{{tag}}</small>
+                                </span>
+                            {% endfor %}
+                        
+                        </div> 
+                    </div>
+
+                    {% comment %} <div>
+                      <p>Connect Artworks with panelists/critics:</p>
+                      {% for tag in artwork.tags.all %}
+                      <h5>{{artwork.title}}</h5>
+                          <span class="badge text-bg-light">
+                            <p><a href="{% url 'artwork' artwork.id %}">Critic: {{artwork.critic.name}}</a></p>
+                          <small>{{tag}}</small>
+                          </span>
+                      {% endfor %}
+                  
+                  </div>  {% endcomment %}
+                </div>
+            </div>
+
+            {% endfor %}
+        </table>
+  
+
+      
+       
+
+
+        </div>
+
+{% endblock content %}

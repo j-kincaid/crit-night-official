@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Panelist Profiles</h1>
+
+
+    <section class="panelist-list">
+      <div class="container">
+  
+        <div class="card-group">
+  
+          {% for profile in profiles %} 
+          <div class="card">
+            {% comment %} <img src="{{ profile.profile_image.url }}" class="card-img-top" alt="profile image" /> {% endcomment %}
+            <div class="card-body">
+              <h5 class="card-title">{{profile.name}}</h5>
+                
+                  <ul class="nav nav-pills nav-fill art-skills">
+                    <li class="nav-item">
+                      <h6 class="card-text">{{profile.media}}</h6>
+                    </li>
+                    <li class="nav-item">
+                      <p class="card-text"><small>{{profile.brief_bio|slice:"150"}}...</small></p>
+                    </li>
+                    <li>
+                      <a class="nav-link" aria-current="page" href="{{profile.website}}" target="_blank">Panelist Website</a>
+                    </li>
+                  </ul>
+                {% comment %} <a href="#" button type="button" class="btn btn-primary">Send Internal Message </button></a> {% endcomment %}
+              </div>
+            </div>
+          {% endfor %}
+          
+          </div>
+  
+      </div>
+    </section>
+
+{% endblock %} 

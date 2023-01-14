@@ -1,0 +1,53 @@
+{% load static %}
+
+<header class="header">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+   
+
+      {% comment %} <div class="container-fluid"> {% endcomment %}
+
+        <nav class="navbar navbar-dark bg-dark">
+
+          <div class="container-fluid">
+                <h1><a href="{% url 'artworks' %}" a class="navbar-brand">Crit Night</a></h1>
+        {% comment %} <a class="navbar-brand" href="{% url 'artworks' %}">Curator</a> {% endcomment %}
+        {% comment %} <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> {% endcomment %}
+        
+
+        <ul class="nav justify-content-end">
+          <ul class="nav justify-content-end">
+
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="{% url 'artworks' %}">Artworks</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active text-white">images without authentication</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="{% url 'profiles' %}">Panelists</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="">My Account</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="{% url 'create-artwork' %}">Add Artwork</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="">Login/Sign Up</a>
+            </li>
+          </ul>
+          {% comment %} <form class="d-flex" role="search">
+            <input class="form-control me-2 text-white" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form> {% endcomment %}
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<hr>

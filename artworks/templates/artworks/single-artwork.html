@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container-md">
+
+<img style="max-width: 500px;" src="{{ artwork.featured_image.url }}">
+
+<h2>{{artwork.title}}</h2>
+<p>{{artwork.description}}</p>
+<hr>
+{% for tag in artwork.tags.all %}
+    <span style="border:1px solid darkgrey;">{{tag}}</span>
+{%  endfor %}
+
+</div>
+
+
+
+{% endblock content %}
