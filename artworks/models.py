@@ -29,9 +29,6 @@ class Artwork(models.Model):
 class Review(models.Model):
     # owner =
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
-    What_works = models.TextField(null=True, blank=True)
-    What_needs_work = models.TextField(null=True, blank=True)
-    What_might_work = models.TextField(null=True, blank=True)
     VOTE_TYPE = (
         ("one_star", 1),
         ("two_stars", 2),
@@ -39,14 +36,18 @@ class Review(models.Model):
         ("four_stars", 4),
         ("five_stars", 5),
     )
-    value = models.CharField(max_length=200, choices=VOTE_TYPE, default="None")
+    rating = models.CharField(max_length=200, choices=VOTE_TYPE, default="None")
+    Sum_it_up = models.CharField(max_length=400, null=True, blank=True)
+    What_works = models.TextField(null=True, blank=True)
+    What_needs_work = models.TextField(null=True, blank=True)
+    What_might_work = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
 
     def __str__(self):
-        return self.value
+        return self.rating
 
 
 # Use Tag to create a Many to Many relationship. It connects the Artworks with the votes they receive.
