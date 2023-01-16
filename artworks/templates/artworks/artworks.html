@@ -6,39 +6,38 @@
            
 
 
+    <h3>Works for Discussion</h3>
+<hr>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for artwork in artworks %}
+        <div class="col">
 
-              <hr>
-<h3>Works for Discussion</h3>
-            {% for artwork in artworks %}
+            <div class="card" style="width: 18rem;">
+                <img src="{{ artwork.featured_image.url }}" class="card-img-top img-thumbnail"  alt="detail of artwork">
+                <div class="card-body">
+                    <h5 class="card-title">{{artwork.title}}</h5>
+                <p class="card-text">
+                    By <a href="{% url 'artwork' artwork.id %}">{{artwork.owner.name}}</a>
+                </p>
 
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <img src="{{ artwork.featured_image.url }}" class="card-img-top img-thumbnail"  alt="detail of artwork">
-                        <div class="card-body">
-                            <h5 class="card-title">{{artwork.title}}</h5>
-                            <p>
-                                By <a href="{% url 'artwork' artwork.id %}">{{artwork.owner.name}}</a>
-                            </p>
-                            <p class="card-text">{{artwork.description}}</p>
-                            <p class="card-text">Score {{artwork.vote_ratio}}%</p>
-                            <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
-                            <a href="{% url 'artwork' artwork.id %}">View</a>
-                            <a href="{% url 'update-artwork' artwork.id %}">Edit</a>
-                            <a href="{% url 'delete-artwork' artwork.id %}">Delete</a>
-                        </div>
+                <p class="card-text">{{artwork.description}}</p>
+                <p class="card-text">Score {{artwork.vote_ratio}}%</p>
+                <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
+                <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">View</a>
+                <a href="{% url 'update-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Edit</a>
+                <a href="{% url 'delete-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Delete</a>
 
-                        <div>
-                            <p>Voted on criteria of:</p>
-                            {% for tag in artwork.tags.all %}
-                                <span class="badge text-bg-light">
-
-                                <small>{{tag}}</small>
-                                </span>
-                            {% endfor %}
-                        
-                        </div> 
-                    </div>
+                <p>Voted on criteria of:</p>
+                    {% for tag in artwork.tags.all %}
+                        <span class="badge text-bg-light">
+                            <small>{{tag}}</small>
+                        </span>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+        {% endfor %}
+    </div>
 
                     {% comment %} <div>
                       <p>Connect Artworks with panelists/critics:</p>
@@ -51,42 +50,32 @@
                       {% endfor %}
                   
                   </div>  {% endcomment %}
-                </div>
-            </div>
 
-            {% endfor %}
-        </table>
   
 
         <h2>Voting Results</h2>
         <div class="container text-center">
-         
-<div class="container"> 
-    {% comment %} <div class="justify-content-md-center"> {% endcomment %}
+            <div class="container"> 
 
-      {% for artwork in artworks %}
-    <div class="row row-cols-6">
-        <div class="col">Artwork</div>
-        <div class="col">Originality</div>
-        <div class="col">Technique</div>
-        <div class="col">Impact</div>
-        <div class="col">Final Score</div>
-    </div>
-    <div class="row row-cols-6">
-        <div class="col">{{artwork.title}}</div>
-        <div class="col">{{artwork.vote_ratio}}%</div>
-        <div class="col">{{artwork.vote_ratio}}%</div>
-        <div class="col">{{artwork.vote_ratio}}%</div>
-        <div class="col">{{artwork.vote_total}}%</div>
-    </div>
+                {% for artwork in artworks %}
+                    <div class="row row-cols-6">
+                        <div class="col">Artwork</div>
+                        <div class="col">Originality</div>
+                        <div class="col">Technique</div>
+                        <div class="col">Impact</div>
+                        <div class="col">Final Score</div>
+                    </div>
+                    <div class="row row-cols-6">
+                        <div class="col">{{artwork.title}}</div>
+                        <div class="col">{{artwork.vote_ratio}}%</div>
+                        <div class="col">{{artwork.vote_ratio}}%</div>
+                        <div class="col">{{artwork.vote_ratio}}%</div>
+                        <div class="col">{{artwork.vote_total}}%</div>
+                    </div>
 
-    {% endfor %}
-
-</div>
-      
-       
-
-
+                {% endfor %}
+            </div>
         </div>
-
+    </div>
+</div>
 {% endblock content %}

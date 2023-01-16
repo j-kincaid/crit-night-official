@@ -14,6 +14,7 @@
           <div class="card">
 
             <div class="card-body">
+              <p><a href="{% url 'panelist-profile' profile.id %}"></p>
             <img src="{{ profile.profile_image.url }}" class="card-img-top" alt="profile image" />
               <h5 class="card-title">{{profile.name}}</h5>
                 

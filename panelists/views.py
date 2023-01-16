@@ -11,6 +11,6 @@ def profiles(request):
 
 
 def panelistProfile(request, pk):
-    Profile = Profile.objects.get(id=pk)
+    profile = Profile.objects.get(id=pk)
     context = {"profile": profile}
-    return render(request, "panelists/panelist-profile.html")
+    return render(request, "panelists/panelist-profile.html", context)
