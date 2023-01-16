@@ -17,12 +17,9 @@ class Profile(models.Model):
     media = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=500, null=True, blank=True)
     username = models.CharField(max_length=200, null=True, blank=True)
-    brief_bio = models.TextField(max_length=1200, null=True, blank=True)
+    brief_bio = models.TextField(max_length=1500, null=True, blank=True)
     profle_image = models.ImageField(
-        null=True,
-        blank=True,
-        upload_to="profiles/",
-        default="profiles/default_profile.png",
+        null=True, blank=True, upload_to='profiles/', default="profiles/default_profile.png",
     )
     website = models.CharField(max_length=200, null=True, blank=True)
     social_insta = models.CharField(max_length=200, blank=True, null=True)
