@@ -5,6 +5,10 @@ from django.dispatch import receiver
 
 import uuid
 
+"""
+I should probably have named this app 'users' because I will use it for creating moderator and artist accounts.
+
+"""
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -12,6 +16,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     media = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=500, null=True, blank=True)
+    username = models.CharField(max_length=200, null=True, blank=True)
     brief_bio = models.TextField(max_length=1200, null=True, blank=True)
     profle_image = models.ImageField(
         null=True,

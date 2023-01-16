@@ -4,13 +4,14 @@ from panelists.models import Profile
 
 
 class Artwork(models.Model):
-    critic = models.ForeignKey(
-        Profile, null=True, blank=True, on_delete=models.RESTRICT
+    owner = models.ForeignKey(
+        Profile, null=True, blank=True, on_delete=models.SET_NULL
     )
     title = models.CharField(max_length=200)
     featured_image = models.ImageField(
         null=True, blank=True, default="default_image.jpg"
     )
+    year_created = models.IntegerField(default=0, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     demo_link = models.CharField(max_length=2000, null=True, blank=True)
     source_link = models.CharField(max_length=2000, null=True, blank=True)
