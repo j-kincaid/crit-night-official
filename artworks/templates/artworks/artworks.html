@@ -42,6 +42,9 @@
                         <img src="{{ artwork.featured_image.url }}" class="card-img-top img-thumbnail"  alt="detail of artwork">
                         <div class="card-body">
                             <h5 class="card-title">{{artwork.title}}</h5>
+                            <p>
+                                <a href="{% url 'artwork' artwork.id %}">By {{artwork.owner.name}}</a>
+                            </p>
                             <p class="card-text">{{artwork.description}}</p>
                             <p class="card-text">Score {{artwork.vote_ratio}}%</p>
                             <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
