@@ -3,37 +3,12 @@
 
 <div class ="container text-center">
       
-      <h2>Voting Results</h2>
-            <div class="container text-center">
-             
-    <div class="container"> 
-        {% comment %} <div class="justify-content-md-center"> {% endcomment %}
-
-          {% for artwork in artworks %}
-        <div class="row row-cols-6">
-            <div class="col">Artwork</div>
-            <div class="col">Originality</div>
-            <div class="col">Technique</div>
-            <div class="col">Impact</div>
-            <div class="col">Final Score</div>
-        </div>
-        <div class="row row-cols-6">
-            <div class="col">{{artwork.title}}</div>
-            <div class="col">{{artwork.vote_ratio}}%</div>
-            <div class="col">{{artwork.vote_ratio}}%</div>
-            <div class="col">{{artwork.vote_ratio}}%</div>
-            <div class="col">{{artwork.vote_total}}%</div>
-        </div>
-
-        {% endfor %}
-
-    </div>
            
 
 
 
               <hr>
-<h3>Thumbnail Images</h3>
+<h3>Works for Discussion</h3>
             {% for artwork in artworks %}
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -43,7 +18,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{artwork.title}}</h5>
                             <p>
-                                <a href="{% url 'artwork' artwork.id %}">By {{artwork.owner.name}}</a>
+                                By <a href="{% url 'artwork' artwork.id %}">{{artwork.owner.name}}</a>
                             </p>
                             <p class="card-text">{{artwork.description}}</p>
                             <p class="card-text">Score {{artwork.vote_ratio}}%</p>
@@ -83,6 +58,31 @@
         </table>
   
 
+        <h2>Voting Results</h2>
+        <div class="container text-center">
+         
+<div class="container"> 
+    {% comment %} <div class="justify-content-md-center"> {% endcomment %}
+
+      {% for artwork in artworks %}
+    <div class="row row-cols-6">
+        <div class="col">Artwork</div>
+        <div class="col">Originality</div>
+        <div class="col">Technique</div>
+        <div class="col">Impact</div>
+        <div class="col">Final Score</div>
+    </div>
+    <div class="row row-cols-6">
+        <div class="col">{{artwork.title}}</div>
+        <div class="col">{{artwork.vote_ratio}}%</div>
+        <div class="col">{{artwork.vote_ratio}}%</div>
+        <div class="col">{{artwork.vote_ratio}}%</div>
+        <div class="col">{{artwork.vote_total}}%</div>
+    </div>
+
+    {% endfor %}
+
+</div>
       
        
 
