@@ -9,7 +9,7 @@
     <h3>Works for Discussion</h3>
 <hr>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for artwork in artworks %}
+        {% for artwork in artworks|slice:"12" %}
         <div class="col">
 
             <div class="card" style="width: 18rem;">
@@ -17,9 +17,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{artwork.title}}</h5>
                 <p class="card-text">
-                    By <a href="{% url 'artwork' artwork.id %}">{{artwork.owner.name}}</a>
+                    By <a href="{% url 'panelist-profile' artwork.owner.id %}">{{artwork.owner.name}}</a>
                 </p>
-
                 <p class="card-text">{{artwork.description}}</p>
                 <p class="card-text">{{artwork.my_goals}}</p>
                 <p class="card-text">Score {{artwork.vote_ratio}}%</p>
@@ -34,6 +33,13 @@
                             <small>{{tag}}</small>
                         </span>
                     {% endfor %}
+
+                    {% for criteria in profile.criteria_set.all|slice:"5" %}
+                    <li class="nav-item">
+                      <p class="card-text"><small>{{criteria}}.</small></p>
+                    </li>
+                  {% endfor %}
+
             </div>
         </div>
     </div>
@@ -53,7 +59,8 @@
                   </div>  {% endcomment %}
 
   
-
+<br />
+<hr>
         <h2>Voting Results</h2>
         <div class="container text-center">
             <div class="container"> 
