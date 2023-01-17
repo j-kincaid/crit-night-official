@@ -11,6 +11,7 @@ class ArtworkForm(ModelForm):
             "title",
             "featured_image",
             "description",
+            "my_goals",
             "demo_link",
             "source_link",
             "tags",
