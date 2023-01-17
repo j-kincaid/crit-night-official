@@ -43,8 +43,9 @@ Plug is in its 11th year now. The Crit Night app is designed to track responses 
 | Guest/Public | All education levels | Anyone interested in art and looking for a fun cultural activity | 
 
 
+![Screenshot 2023-01-16 at 4 37 16 PM](https://user-images.githubusercontent.com/11914762/212775770-af8328fc-adae-48b9-b3b9-d6c87e7277a2.png)
 
-
+![Screenshot 2023-01-16 at 4 38 08 PM](https://user-images.githubusercontent.com/11914762/212775781-514de811-6611-4425-8be6-c7f4eea98324.png)
 
 
 
