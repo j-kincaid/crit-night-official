@@ -4,33 +4,30 @@
 
 
   <div class="container-md">
-    <h2>Participant Profile</h2>
+    <h1>{{profile.name}}</h1>
     
 
-    <img src="{{ profile.profile_image.url }}" style="max-width: 800px;" class="card-img-top" alt="profile image" />
+    <img src="{{ profile.profile_image.url }}" style="max-width: 400px; border-radius: 1%;" class="card-img-top" alt="profile image" />
       <div class="card">
         <div class="card-body">
-            <h5 class="card-title">{{profile.name}}</h5>
+            <p class="card-text">
+              <h6 class="card-text">{{profile.media}}</h6>
+            </p>
                 <p class="card-text">
                     <h6 class="card-text">{{profile.brief_bio}}</h6>
                 </p>
-                  <p class="card-text">
-                    <h6 class="card-text">{{profile.media}}</h6>
-                  </p>
                   {% for criteria in criterias %}
                   <p class="card-text">
                     <h6 class="card-text">{{criteria}}</h6>
                   </p>
                   {% endfor %}
-                  <p class="card-text">
-                    <p class="card-text"><small>{{profile.brief_bio|slice:"5000"}}...</small></p>
-                  </p>
                   
                     <a href="{{profile.website}}" target="_blank" button type="button" class="btn btn-primary">Participant Website</a>
                   
               <a href="#" button type="button" class="btn btn-primary">Send Internal Message</button></a>
+              <hr>
           <div class="container">
-            <h3>Artworks<h3>
+            <h3>Works<h3>
               <div class="row row-cols-1 row-cols-md-3 g-4">
               {% for artwork in profile.artwork_set.all %}
                   

@@ -20,7 +20,7 @@
                     By <a href="{% url 'panelist-profile' artwork.owner.id %}">{{artwork.owner.name}}</a>
                 </p>
                 <p class="card-text">{{artwork.description}}</p>
-                <p class="card-text">{{artwork.my_goals}}</p>
+                <p class="card-text">{{artwork.topic}}</p>
                 <p class="card-text">Score {{artwork.vote_ratio}}%</p>
                 <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
                 <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">View</a>
