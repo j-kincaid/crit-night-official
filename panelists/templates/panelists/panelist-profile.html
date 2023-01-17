@@ -2,14 +2,15 @@
 
 {% block content %}
 
-<section class="panelist-list">
-    <div class="container">
 
-      <div class="card-group">
+{% comment %} <section class="panelist-list"> {% endcomment %}
+    <div class="container-md">
+
+    
 
        
         <div class="card">
-          <img src="{{profile.profile_image}}" class="card-img-top" alt="profile image" />
+          <img src="{{ profile.profile_image.url }}" class="card-img-top" alt="profile image" />
           <div class="card-body">
             <h5 class="card-title">{{profile.name}}</h5>
               <ul class="nav art-skills">
@@ -33,8 +34,8 @@
         
         </div>
 
-    </div>
-  </section>
+    {% comment %} </div>
+  </section> {% endcomment %}
 
 
 {% endblock %}

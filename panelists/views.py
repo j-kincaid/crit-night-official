@@ -6,7 +6,7 @@ from .models import Profile
 
 def profiles(request):
     profiles = Profile.objects.all()
-    context = {"profiles": profiles}
+    context = {'profiles': profiles}
     return render(request, "panelists/profiles.html", context)
 
 
