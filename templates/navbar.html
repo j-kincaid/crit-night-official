@@ -23,10 +23,10 @@
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="{% url 'artworks' %}">Artworks</a>
             </li>
-
+{% comment %} 
             <li class="nav-item">
               <a class="nav-link active text-white">images without authentication</a>
-            </li>
+            </li> {% endcomment %}
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="{% url 'profiles' %}">Participants</a>
             </li>
@@ -36,12 +36,22 @@
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="">My Account</a>
             </li>
+
+            {% if request.user.is_authenticated %}
+
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="{% url 'create-artwork' %}">Add Artwork</a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="">Login/Sign Up</a>
+              <a class="nav-link active text-white" aria-current="page" href="{% url 'logout' %}">Log Out</a>
             </li>
+            {% else %}
+
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="{% url 'login' %}">Login/Sign Up</a>
+            </li>
+            {% endif %}
           </ul>
           {% comment %} <form class="d-flex" role="search">
             <input class="form-control me-2 text-white" type="search" placeholder="Search" aria-label="Search">
