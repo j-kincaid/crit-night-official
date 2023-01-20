@@ -54,6 +54,7 @@ def profiles(request):
 
 def panelistProfile(request, pk):
     profile = Profile.objects.get(id=pk)
+    context = {'profiles': profiles}
 
     # topSkills = profile.skill_set.exclude(description__exact="")
     # otherSkills = profile.skill_set.filter(description="")
