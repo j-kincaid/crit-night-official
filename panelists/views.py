@@ -54,11 +54,11 @@ def profiles(request):
 
 def panelistProfile(request, pk):
     profile = Profile.objects.get(id=pk)
+    context = {'profiles': profiles}
 
-    topSkills = profile.skill_set.exclude(description__exact="")
-    otherSkills = profile.skill_set.filter(description="")
+    # topSkills = profile.skill_set.exclude(description__exact="")
+    # otherSkills = profile.skill_set.filter(description="")
 
-    context = {'profile': profile, 'topSkills': topSkills,
-               "otherSkills": otherSkills}
+    context = {'profile': profile}
     return render(request, 'panelists/panelist-profile.html', context)
 
