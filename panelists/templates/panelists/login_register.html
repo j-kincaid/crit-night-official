@@ -2,9 +2,29 @@
 
 {% block content %}
 
+
+
 {% if page == 'register' %}
+
 <h1>Register User</h1>
 
+<p>Don't have an account? <a href="{% url 'register' %}">Create a new Account</a></p>
+
+<p>Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+<form method="POST" action="{% url 'register' %}">
+    {% csrf_token %}
+    
+    {% for field in form %}
+    <div class="form__field">
+        <label for="formInput#text">{{field.label}}</label>
+        {{field}}
+
+        {% for error in field.errors %}
+        <p style="color: red;">{{error}}</p>
+        {% endfor %}     
+    </div>
+    {% endfor %}    
+</form>
 
 <p>Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
 
@@ -20,4 +40,4 @@
 
 {% endif %}
 
-{% endblock content %}
+{% endblock content %} 

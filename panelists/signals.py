@@ -4,8 +4,8 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from .models import Profile
 
-from django.core.mail import send_mail
-from django.conf import settings
+# from django.core.mail import send_mail
+# from django.conf import settings
 
 # @receiver(post_save, sender=Profile)
 
@@ -20,16 +20,8 @@ def createProfile(sender, instance, created, **kwargs):
             name=user.first_name,
         )
 
-        subject = 'Welcome to CritNight'
-        message = 'We are glad you are here!'
-
-        send_mail(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,
-            [profile.email],
-            fail_silently=False,
-        )
+        subject = "Welcome to CritNight"
+        message = "We are glad you are here!"
 
 
 def updateUser(sender, instance, created, **kwargs):

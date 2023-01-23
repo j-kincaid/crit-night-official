@@ -10,6 +10,7 @@ I should probably have named this app 'users' because I will use it for creating
 
 """
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     # models.CASCADE Deletes the profile any time the profile gets deleted
@@ -19,7 +20,11 @@ class Profile(models.Model):
     username = models.CharField(max_length=200, null=True, blank=True)
     brief_bio = models.TextField(max_length=1500, null=True, blank=True)
     profile_image = models.ImageField(
-        null=True, blank=True, upload_to='profiles/', default="profiles/default-profile.png")
+        null=True,
+        blank=True,
+        upload_to="profiles/",
+        default="profiles/default-profile.png",
+    )
     website = models.CharField(max_length=200, null=True, blank=True)
     social_insta = models.CharField(max_length=200, blank=True, null=True)
     social_twitter = models.CharField(max_length=200, blank=True, null=True)

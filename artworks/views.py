@@ -12,7 +12,6 @@ def artworks(request):
     return render(request, "artworks/artworks.html", context)
 
 
-
 # http://127.0.0.1:8000/artwork/1/
 def artwork(request, pk):
     artworkObj = Artwork.objects.get(id=pk)
@@ -21,6 +20,7 @@ def artwork(request, pk):
     return render(
         request, "artworks/single-artwork.html", {"artwork": artworkObj, "tags": tags}
     )
+
 
 @login_required(login_url="login")
 def createArtwork(request):
