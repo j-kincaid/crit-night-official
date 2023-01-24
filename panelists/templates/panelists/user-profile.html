@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+  <div class="container-md">
+    <h1>{{profile.name}}</h1>
+    
+
+    <img src="{{ profile.profile_image.url }}" style="max-width: 400px; border-radius: 1%;" class="card-img-top" alt="profile image" />
+      <div class="card">
+        <div class="card-body">
+            <p class="card-text">
+              <h6 class="card-text">{{profile.media}}</h6>
+            </p>
+                <p class="card-text">
+                    <h6 class="card-text">{{profile.brief_bio}}</h6>
+                </p>
+                  {% for criteria in criterias %}
+                  <p class="card-text">
+                    <h6 class="card-text">{{criteria}}</h6>
+                  </p>
+                  {% endfor %}
+                  
+                    <a href="{{profile.website}}" target="_blank" button type="button" class="btn btn-primary">Participant Website</a>
+                  
+              <a href="#" button type="button" class="btn btn-primary">Send Internal Message</button></a>
+              <hr>
+          <div class="container">
+            <h3>Works<h3>
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+              {% for artwork in profile.artwork_set.all %}
+                  
+              <div class="card" style="width: 18rem;">
+                    <a href="{% url 'artwork' artwork.id %}"
+                      <img style="max-width: 50px;" src="{{ artwork.featured_image.url }}"></a>
+                        <p class="card-text">
+                          <h3>{{artwork.title}}</h3>
+                        </p>
+                          <img src="{{ artwork.featured_image.url }}" class="card-img-top img-thumbnail"  alt="detail of artwork">
+                          <div class="card-body">
+                              <h5 class="card-title">{{artwork.title}}</h5>
+                          <p class="card-text">Score {{artwork.vote_ratio}}%</p>
+                          <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
+                          <p class="card-text">
+                          <span class="artwork-rating">{{artwork.vote_ratio}}%</span> Stars
+                            {{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}
+                          </p>
+                        
+                        <p class="card-text">
+                          {% for tag in artwork.tags.all %}
+                            <span style="border:1px solid darkgrey;"><small>{{tag}}</small></span>
+                          {%  endfor %}
+                        </p>
+                      </div>
+                  </div>
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+        
+  </div>
+
+
+
+{% endblock %}

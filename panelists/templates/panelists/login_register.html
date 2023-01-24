@@ -1,35 +1,70 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content %}
 
 <div class="container-md">
     <div class="card" style="width: 18rem;">
 {% if page == 'register' %}
+
+    <a href="/">
+        <img src="{% static 'images/choreographer.jpg' %}" alt="icon" class="register-pic"/>
+    </a>
     <h1>Register User</h1>
-
-
     <form  method="POST" action="{% url 'register' %}">
         {% csrf_token %} 
         {{form.as_p}}
-       
         <input type="submit" class="btn btn-primary btn-sm" value="Register User" />
     </form>
     
     <p>Already have an account? <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Sign in</a></p>
 {% else %}
-    <form action="{% url 'login' %}"  method="POST">
-        {% csrf_token %} 
-        <h1>Sign in</h1>
-        <input type="text" name="username" placeholder="Username" />
-        
-        <input type="password" name="password" placeholder="Enter password" />
-        <input type="submit" class="btn btn-primary btn-sm" value="Login" />
+        <div class="card">
+                <a href="/">
+                    <img src="{% static 'images/choreographer.jpg' %}" class="portal-pic" />
+                </a>
+    <h1>Account Welcome page</h1>
+
+        <form action="{% url 'login' %}"  method="POST">
+            {% csrf_token %} 
+            <input type="text" name="username" placeholder="Username" />
+            
+            <input type="password" name="password" placeholder="Enter password" />
+            <input type="submit" class="btn btn-primary btn-sm" value="Login" />
 
    
-        <p>Don't have an account? <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Sign up</a></p>
-    </form>
+            <p>Don't have an account? <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Sign up</a></p>
+        </form>
+
+    </div>
+    </div>
 {% endif %}
     </div>
-</div>
+{% comment %} </div>
 
+
+<div class="container-md">
+    <div class="auth">
+        <div class="card">
+
+            <a href="/">
+                <img src="{% static 'images/choreographer.jpg' %}" class="portal-pic" />
+            </a>
+            <h1>Greetings, Crit Night Participant!<h1>
+            <form action="{% url 'login' %}"  method="POST">
+                {% csrf_token %}
+            <label for="formInput#text">Username: </label>
+            <input class="" id="formInput#text" name="username" placeholder="Enter your username here" />
+        </div> 
+    </div>
+
+
+    </div>
+
+
+    <div class="auth_actions">
+        <label for="formInput#password">Password: </label>
+        <input class="button-primary btn-sm" type="submit" value="Sign In"
+        <a href="forgetpassword.html">Forget password?</a>
+    </div> 
+</div> {% endcomment %}
 {% endblock content %} 
