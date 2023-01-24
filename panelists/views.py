@@ -69,7 +69,7 @@ def profiles(request):
     return render(request, "panelists/profiles.html", context)
 
 
-def panelistProfile(request, pk):
+def userProfile(request, pk):
     profile = Profile.objects.get(id=pk)
     context = {"profiles": profiles}
 
@@ -77,7 +77,7 @@ def panelistProfile(request, pk):
     # otherSkills = profile.skill_set.filter(description="")
 
     context = {"profile": profile}
-    return render(request, "panelists/panelist-profile.html", context)
+    return render(request, "panelists/user-profile.html", context)
 
 
 # @login_required(login_url="login")

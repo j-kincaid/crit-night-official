@@ -23,19 +23,5 @@
     </form>
 {% endif %}
 
-{% comment %} 
-<p>Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
-
-{% else %}
-
-    <form action="{% url 'login' %}"  method="POST">
-        {% csrf_token %} 
-        <input type="text" name="username" placeholder="Username" />
-        <input type="password" name="password" placeholder="Enter password" />
-        <input type="submit" value="Login" />
-    </form>
-    <p>Don't have an account? <a href="{% url 'register' %}">Sign up</a></p>
-
-{% endif %} {% endcomment %}
 
 {% endblock content %} 
