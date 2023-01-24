@@ -3,8 +3,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Profile
 from .forms import CustomUserCreationForm
+from .models import Profile
 
 
 def loginUser(request):
@@ -20,7 +20,7 @@ def loginUser(request):
         try:
             user = User.objects.get(username=username)
         except:
-            print(request, "Username does not exist")
+            messages.error(request, "Username does not exist")
 
         user = authenticate(request, username=username, password=password)
 
@@ -28,7 +28,7 @@ def loginUser(request):
             login(request, user)
             return redirect('profiles')
         else:
-            print("Username OR password is incorrect")
+            messages.error(request, "Username or password is incorrect")
 
     return render(request, "panelists/login_register.html")
 
@@ -41,43 +41,32 @@ def logoutUser(request):
 
 def registerUser(request):
     page = "register"
-    context = {}
+    form = CustomUserCreationForm()
+
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+# # Makes sure the username is lowercase so it's not case-sensitive
+            user.save()
+
+            messages.success(request, 'User account was created!')
+
+            login(request, user)
+            return redirect('profiles')
+
+        else:
+            messages.success(request, 'An error has occurred during registration.')
+
+    context = {'page': page, 'form': form}
     return render(request, "panelists/login_register.html", context)
-
-
-#     form =CustomUserCreationForm()
-
-#     if request.method == 'POST':
-#         form = CustomUserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#             user.username = user.username.lower()
-#             user.save()
-# # Makes sure the username is lowercase
-
-#             messages.success(request, 'User Account was created.')
-
-#             login(request, user)
-#             return redirect('profiles')
-
-#         else:
-#             messages.success(
-#                 request, 'An error has occurred during registration.')
-
-#     context = {'page': page, 'form': form}
-#     return render(request, 'panelists/login_register.html', context)
 
 
 def profiles(request):
     profiles = Profile.objects.all()
     context = {"profiles": profiles}
     return render(request, "panelists/profiles.html", context)
-
-    # profile = Profile.objects.get(id=pk)
-
-    # # context = {"profile": profile}
-
-    # return render(request, "panelists/panelist-profile.html", context)
 
 
 def panelistProfile(request, pk):
@@ -91,9 +80,11 @@ def panelistProfile(request, pk):
     return render(request, "panelists/panelist-profile.html", context)
 
 
-@login_required(login_url="login")
-def userAccount(request):
-    profile = request.user.profile
+# @login_required(login_url="login")
+# def userAccount(request):
+#     profile = request.user.profile
 
-    context = {"profile": profile}
-    return render(request, "panelists/account.html", context)
+#     artworks = profile.artwork_set.all()
+
+#     context = {'profile': profile, 'artworks': artworks}
+#     return render(request, "panelists/account.html", context)
