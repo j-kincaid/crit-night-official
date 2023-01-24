@@ -57,7 +57,7 @@ def registerUser(request):
             return redirect('profiles')
 
         else:
-            messages.success(request, 'An error has occurred during registration.')
+            messages.error(request, 'An error has occurred during registration.')
 
     context = {'page': page, 'form': form}
     return render(request, "panelists/login_register.html", context)
