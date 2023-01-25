@@ -18,17 +18,19 @@
     <form method="POST" action="{% url 'register' %}">
         {% csrf_token %} 
 
-        {% for field in form %}
-        <div class="form_field">
-            <label for="formInput#text">{{field.label}}</label>
-            {{field}}
+            {% for field in form %}
+            <div class="form_field">
+                <label for="formInput#text">{{field.label}}</label>
+                {{field}}
 
+                {% for error in field.errors %}
 
+               <p style="color: red;"><small>{{field.help_text}}</small></p>
 
+                {% endfor %}
+            </div>
 
-        </div>
-
-        {% endfor %}
+            {% endfor %}
 
         {% comment %} {{form.as_p}} {% endcomment %}
         <div>
@@ -48,9 +50,9 @@
 <div class="row justify-content-md-center">
 
     <div class="card" style="width: 18rem;">
-                    <a href="/">
-                        <img src="{% static 'images/choreographer.jpg' %}" class="portal-pic" />
-                    </a>
+        <a href="/">
+            <img src="{% static 'images/choreographer.jpg' %}" class="portal-pic" />
+        </a>
         <h3>Account Welcome page</h3>
 
             <form action="{% url 'login' %}"  method="POST">
@@ -65,21 +67,12 @@
 
             <div class="auth">
                 <p>Don't have an account? <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Sign up</a></p>
-            </div>
-        </div>
     </div>
+</div>
 
 {% endif %}
 
-</div>
-
-    </div>
+</div> 
 
 
-    <div class="auth_actions">
-        <label for="formInput#password">Password: </label>
-        <input class="button-primary btn-sm" type="submit" value="Sign In"
-        <a href="forgetpassword.html">Forget password?</a>
-    </div> 
-</div> {% endcomment %}
-{% endblock content %} 
+{% endblock content %}
