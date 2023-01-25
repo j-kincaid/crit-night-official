@@ -27,7 +27,7 @@
                 <a href="{% url 'update-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Edit</a>
                 <a href="{% url 'delete-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Delete</a>
 
-                <p>Voted on criteria of:</p>
+                <p>Votes on criteria of:</p>
                     {% for tag in artwork.tags.all %}
                         <span class="badge text-bg-light">
                             <small>{{tag}}</small>

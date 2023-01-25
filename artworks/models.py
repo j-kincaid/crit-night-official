@@ -12,7 +12,7 @@ class Artwork(models.Model):
     year_created = models.IntegerField(default=0, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     topic = models.TextField(
-        default="Write your goals for the work here", null=True, blank=True
+        default="I would like feedback on these topics:", null=True, blank=True
     )
     demo_link = models.CharField(max_length=2000, null=True, blank=True)
     source_link = models.CharField(max_length=2000, null=True, blank=True)
