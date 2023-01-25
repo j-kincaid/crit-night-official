@@ -3,60 +3,75 @@
 {% block content %}
 
 <div class="container-md">
-    <div class="card" style="width: 18rem;">
+
 {% if page == 'register' %}
 
-    <a href="/">
-        <img src="{% static 'images/choreographer.jpg' %}" alt="icon" class="register-pic"/>
-    </a>
-    <h1>Register User</h1>
-    <form  method="POST" action="{% url 'register' %}">
-        {% csrf_token %} 
-        {{form.as_p}}
-        <input type="submit" class="btn btn-primary btn-sm" value="Register User" />
-    </form>
-    
-    <p>Already have an account? <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Sign in</a></p>
-{% else %}
-        <div class="card">
-                <a href="/">
-                    <img src="{% static 'images/choreographer.jpg' %}" class="portal-pic" />
-                </a>
-    <h1>Account Welcome page</h1>
-
-        <form action="{% url 'login' %}"  method="POST">
-            {% csrf_token %} 
-            <input type="text" name="username" placeholder="Username" />
-            
-            <input type="password" name="password" placeholder="Enter password" />
-            <input type="submit" class="btn btn-primary btn-sm" value="Login" />
-
-   
-            <p>Don't have an account? <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Sign up</a></p>
-        </form>
-
-    </div>
-    </div>
-{% endif %}
-    </div>
-{% comment %} </div>
-
-
-<div class="container-md">
-    <div class="auth">
-        <div class="card">
-
+    <div class="row justify-content-md-center">
+        <div class="card" style="width: 18rem;">
             <a href="/">
-                <img src="{% static 'images/choreographer.jpg' %}" class="portal-pic" />
+                <img src="{% static 'images/choreographer.jpg' %}" alt="icon" class="register-pic"/>
             </a>
-            <h1>Greetings, Crit Night Participant!<h1>
-            <form action="{% url 'login' %}"  method="POST">
-                {% csrf_token %}
-            <label for="formInput#text">Username: </label>
-            <input class="" id="formInput#text" name="username" placeholder="Enter your username here" />
-        </div> 
+            <h3>Join the Discussion!</h3>
+        </div>
     </div>
 
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %} 
+
+        {% for field in form %}
+        <div class="form_field">
+            <label for="formInput#text">{{field.label}}</label>
+            {{field}}
+
+
+
+
+        </div>
+
+        {% endfor %}
+
+        {% comment %} {{form.as_p}} {% endcomment %}
+        <div>
+            <input type="submit" class="btn btn-primary btn-sm" value="Register User" />
+        </div>
+    </form>
+
+
+    <div class="row justify-content-md-center">
+        <p>Already have an account? 
+        <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Sign in</a></p>
+    </div>
+</div>
+
+{% else %}
+
+<div class="row justify-content-md-center">
+
+    <div class="card" style="width: 18rem;">
+                    <a href="/">
+                        <img src="{% static 'images/choreographer.jpg' %}" class="portal-pic" />
+                    </a>
+        <h3>Account Welcome page</h3>
+
+            <form action="{% url 'login' %}"  method="POST">
+                {% csrf_token %} 
+                <div class="form_field">
+                    <input type="text" name="username" placeholder="Username" />
+                    
+                    <input type="password" name="password" placeholder="Enter password" />
+                    <input type="submit" class="btn btn-primary btn-sm" value="Login" />
+                </div>
+            </form>
+
+            <div class="auth">
+                <p>Don't have an account? <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+</div>
 
     </div>
 
