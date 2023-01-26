@@ -35,7 +35,7 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    messages.error(request, "You have been logged out.")
+    messages.info(request, "You have been logged out.")
     return redirect("login")
 
 
@@ -81,10 +81,12 @@ def userProfile(request, pk):
 
 
 # @login_required(login_url="login")
-# def userAccount(request):
-#     profile = request.user.profile
 
-#     artworks = profile.artwork_set.all()
+def userAccount(request):
+    profile = request.user.profile
 
-#     context = {'profile': profile, 'artworks': artworks}
-#     return render(request, "panelists/account.html", context)
+    artworks = profile.artwork_set.all()
+
+    context = {'profile': profile, 'artworks': artworks}
+    return render(request, 'panelists/account.html', context)
+
