@@ -1,5 +1,6 @@
-
 img.portal-pic,
-img.register-pic {
-    max-width: 200px;
+img.register-pic,
+img.account-image {
+    max-width: 100px;
 }
+

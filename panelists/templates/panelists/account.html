@@ -4,106 +4,80 @@
 
 <!-- Main Section -->
 
-<div class="container-fluid">
+<div class="container-md">
     <div class="layout">
-        <div class="column column--1of3">
-            <div class="card text-center">
-            <div class="card__body dev">
-                {% comment %} <a class="tag tag--pill tag--main settings__btn" href="{% url 'edit-account' %}"><i class="im im-edit"></i>
-                Edit</a> {% endcomment %}
-                <img src="{{profile.imageURL}}" />
+        <div class="row justify-content-center">
+            <div class="col-4 personal">
+                
+                <img src="{{ profile.profile_image.url }}" class="img-thumbnail" alt="participant profile image" />
                 <h2>{{profile.name}}</h2>
+                <h4>bio</h4>
                 <p>{{profile.brief_bio}}</p>
 
+               <!-- social media links -->
                 <ul>
-                {% if profile.website %}
-                <li>
-                    <a href="{{profile.website}}" target="_blank">Website</a>
-                </li>
-                {% endif %}
+                    {% if profile.website %}
+                        <li>
+                            <a href="{{profile.website}}" target="_blank">Website</a>
+                        </li>
+                    {% endif %}
 
+                    {% if profile.social_insta %}
+                        <li>
+                            <a title="Twitter" href="{{profile.social_insta}}" target="_blank">Instagram</a>
+                        </li>
+                    {% endif %}
 
-                {% if profile.social_twitter %}
-                <li>
-                    <a title="Twitter" href="{{profile.social_twitter}}" target="_blank">Twitter</a>
-                </li>
-                {% endif %}
+                    {% if profile.social_twitter %}
+                        <li>
+                            <a title="Twitter" href="{{profile.social_twitter}}" target="_blank">Twitter</a>
+                        </li>
+                    {% endif %}
 
-                {% if profile.social_linkedin %}
-                <li>
-                    <a title="LinkedIn" href="{{profile.social_linkedin}}" target="_blank">LinkedIn</a>
-                </li>
-                {% endif %}
-
-
+                    {% if profile.social_other %}
+                        <li>
+                            <a title="LinkedIn" href="{{profile.social_other}}" target="_blank">Other Social</a>
+                        </li>
+                    {% endif %}
                 </ul>
-
-
-            </div>
-            </div>
-        </div>
-        {% comment %} <div class="column column--2of3">
-            <div class="devInfo">
-            <h3 class="devInfo__title">About Me</h3>
-            <p class="devInfo__about">{{profile.bio}}</p>
-            </div>
-            <div class="settings">
-            <h3 class="settings__title">Skills</h3>
-            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-skill' %}"><i
-                class="im im-plus"></i> Add Skill</a>
-            </div> {% endcomment %}
-
-            {% comment %} <table class="settings__table">
-
-            {% for skill in skills %}
-
-                <tr>
-                    <td class="settings__tableInfo">
-                    <h4>{{skill.name}}</h4>
-                    <p>
-                        {{skill.description}}
-                    </p>
-                    </td>
-                    <td class="settings__tableActions">
-                    <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-skill' skill.id %}"><i
-                        class="im im-edit"></i> Edit</a>
-                    <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' skill.id %}?next=/account"><i
-                        class="im im-x-mark-circle-o"></i>
-                        Delete</a>
-                    </td>
-                </tr>
-
-            {% endfor %}
-
-            </table> {% endcomment %}
-
-            <div class="settings">
-                <h3 class="settings__title">Artworks</h3>
-                <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-artwork' %}"><i
-                    class="im im-plus"></i> Add Artwork</a>
             </div>
 
-            <table class="settings__table">
+            <div class="col-4 artwork-list">
+                <h3>Artworks</h3>
+                <a href="{% url 'create-artwork' %}" class="btn btn-secondary btn-sm"> Add Artwork</a>
+
+            <div class="card" style="width: 18rem;">
             {% for artwork in artworks %}
-            <tr>
-                <td class="settings__thumbnail">
-                <a href="{% url 'artwork' artwork.id %}"><img src="{{artwork.imageURL}}" alt="Artwork Thumbnail" /></a>
-                </td>
-                <td class="settings__tableInfo">
-                <a href="{% url 'artwork' artwork.id %}">{{artwork.title}}</a>
-                <p>{{artwork.description|slice:"150"}}</p>
-                </td>
-                <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-artwork' artwork.id %}"><i
-                    class="im im-edit"></i> Edit</a>
-                <a class="tag tag--pill tag--main settings__btn"
-                    href="{% url 'delete-artwork'  artwork.id %}?next=/account"><i class="im im-x-mark-circle-o"></i>
-                    Delete</a>
-                </td>
-            </tr>
+         
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ artwork.featured_image.url }}" class="card-img-top img-thumbnail"  alt="detail of artwork">
+               
+                <h5 class="card-title">{{artwork.title}}</h5>
+                
+                <p>{{artwork.description}}</p>
+
+                <p>{{artwork.topic}}</p>
+               
+                <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">View</a>
+                
+                <a href="{% url 'update-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Edit</a>
+                <a href="{% url 'delete-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Delete</a>
+                
+            <p>Votes on criteria of:</p>
+            {% for tag in artwork.tags.all %}
+                <span class="badge text-bg-light">
+                    <small>{{tag}}</small>
+                </span>
             {% endfor %}
 
-            </table>
+            {% for criteria in profile.criteria_set.all|slice:"5" %}
+            <li class="nav-item">
+              <p class="card-text"><small>{{criteria}}.</small></p>
+            </li>
+          {% endfor %} 
+            
+            {% endfor %}
+                </div>
             </div>
     </div>
 </div>

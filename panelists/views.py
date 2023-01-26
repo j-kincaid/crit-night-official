@@ -71,17 +71,12 @@ def profiles(request):
 
 def userProfile(request, pk):
     profile = Profile.objects.get(id=pk)
-    context = {"profiles": profiles}
-
-    # topSkills = profile.skill_set.exclude(description__exact="")
-    # otherSkills = profile.skill_set.filter(description="")
 
     context = {"profile": profile}
     return render(request, "panelists/user-profile.html", context)
 
 
-# @login_required(login_url="login")
-
+@login_required(login_url="login")
 def userAccount(request):
     profile = request.user.profile
 
