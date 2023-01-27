@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{artwork.title}}</h5>
                 <p class="card-text">
-                    By <a href="{% url 'panelist-profile' artwork.owner.id %}">{{artwork.owner.name}}</a>
+                    By <a href="{% url 'user-profile' artwork.owner.id %}">{{artwork.owner.name}}</a>
                 </p>
                 <p class="card-text">{{artwork.description}}</p>
                 <p class="card-text">{{artwork.topic}}</p>
