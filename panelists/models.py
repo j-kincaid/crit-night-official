@@ -18,6 +18,7 @@ class Profile(models.Model):
     media = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=500, null=True, blank=True)
     username = models.CharField(max_length=200, null=True, blank=True)
+    pronouns = models.CharField(max_length=200, null=True, blank=True)
     brief_bio = models.TextField(max_length=1500, null=True, blank=True)
     profile_image = models.ImageField(
         null=True,
@@ -38,15 +39,4 @@ class Profile(models.Model):
         return str(self.user.username)
 
 
-class Criteria(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
-    name = models.CharField(max_length=200, null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(
-        default=uuid.uuid4, unique=True, primary_key=True, editable=False
-    )
-
-    def __str__(self):
-        return str(self.name)
 

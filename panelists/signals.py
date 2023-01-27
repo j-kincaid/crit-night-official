@@ -20,9 +20,6 @@ def createProfile(sender, instance, created, **kwargs):
             name=user.first_name,
         )
 
-        # subject = "Welcome to CritNight"
-        # message = "We are glad you are here!"
-
 
 def updateUser(sender, instance, created, **kwargs):
     profile = instance
