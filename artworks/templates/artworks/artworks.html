@@ -1,17 +1,29 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<div class ="container text-center">
+<div class ="container">
       
            
 
+    <div class="container-sm">
+
+        <h1>Welcome to CRIT NIGHT!</h1>
+        
+        <p>I first became acquainted with the tradition of Critique Night (CRIT NIGHT) through Plug Projects, one of Kansas City's alternative Arts Exhibition spaces.</p>
+        
+        <h2>What is CRIT NIGHT?</h2>
+        
+        <p>Moderated by a rotating panel of local artists and art professionals, 3 artists are selected to participate at each CRIT NIGHT. Open to the public, the goal of CRIT NIGHT is to encourage open discussion of artists’ work and to activate both the artist and audience engaged dialogue that will provoke artistic growth and the public’s engagement.</p>
+        
+        <p> Plug is in its 11th year now. The Crit Night app is designed to track responses to the art during the informal sessions. It incorporates a rubric to guide the panel in topics or themes to prioritize the conversation. Once the app is developed, maybe I'll have the confidence to present it as a tool for use at an event!</p>
+        
+        </div>
 
     <h3>Works for Discussion</h3>
 <hr>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for artwork in artworks|slice:"12" %}
+        {% for artwork in artworks|slice:"15" %}
         <div class="col">
-
             <div class="card" style="width: 18rem;">
                 <img src="{{ artwork.featured_image.url }}" class="card-img-top img-thumbnail"  alt="detail of artwork">
                 <div class="card-body">
@@ -23,9 +35,14 @@
                 <p class="card-text">{{artwork.topic}}</p>
                 <p class="card-text">Score {{artwork.vote_ratio}}%</p>
                 <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
-                <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">View</a>
-                <a href="{% url 'update-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Edit</a>
-                <a href="{% url 'delete-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Delete</a>
+                <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">Detail View</a>
+
+                {% comment %} {% if artwork.owner.is_authenticated %}
+
+                    <a href="{% url 'update-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Edit</a>
+                    <a href="{% url 'delete-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Delete</a>
+
+                {% endif %} {% endcomment %}
 
                 <p>Votes on criteria of:</p>
                     {% for tag in artwork.tags.all %}
@@ -61,7 +78,8 @@
   
 <br />
 <hr>
-        <h2>Quick Feedback</h2>
+        <h2>Instant Feedback</h2>
+        <h4>These scores provide an "at a glance" response to the work.</h4>
         <div class="container text-center">
             <div class="container"> 
 
