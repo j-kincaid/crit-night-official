@@ -24,11 +24,14 @@ def artwork(request, pk):
 
 @login_required(login_url="login")
 def createArtwork(request):
+    profile = request.user.profile
     form = ArtworkForm()
     if request.method == "POST":
         form = ArtworkForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            artwork = form.save(commit = False)
+            artwork.owner = profile
+            artwork.save()
             return redirect("artworks")
 
     context = {"form": form}
@@ -37,7 +40,8 @@ def createArtwork(request):
 
 @login_required(login_url="login")
 def updateArtwork(request, pk):
-    artwork = Artwork.objects.get(id=pk)
+    profile = request.user.profile
+    artwork = profile.artwork_set.get(id=pk)
     form = ArtworkForm(instance=artwork)
 
     if request.method == "POST":
@@ -52,7 +56,8 @@ def updateArtwork(request, pk):
 
 @login_required(login_url="login")
 def deleteArtwork(request, pk):
-    artwork = Artwork.objects.get(id=pk)
+    profile = request.user.profile
+    artwork = profile.artwork_set.get(id=pk)
     if request.method == "POST":
         artwork.delete()
         return redirect("artworks")
