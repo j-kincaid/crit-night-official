@@ -5,10 +5,6 @@ from django.dispatch import receiver
 
 import uuid
 
-"""
-I should probably have named this app 'users' because I will use it for creating moderator and artist accounts.
-
-"""
 
 
 class Profile(models.Model):

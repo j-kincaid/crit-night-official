@@ -29,7 +29,7 @@ class Artwork(models.Model):
 
 
 class Review(models.Model):
-    # owner =
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
     VOTE_TYPE = (
         ("one_star", 1),
@@ -47,6 +47,9 @@ class Review(models.Model):
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
+
+    class Meta:
+        unique_together = [['owner'], ['artwork']]
 
     def __str__(self):
         return self.rating
