@@ -1,5 +1,3 @@
-# Curator
-
 # Crit Night
 
 ### CONCEPT:
