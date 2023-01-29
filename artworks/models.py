@@ -27,6 +27,32 @@ class Artwork(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-vote_ratio', '-vote_total', 'title']
+
+    @property
+    def reviewers(self):
+        queryset = self.review_set.all().values_list('owner__id', flat=True)
+        return queryset
+
+
+    @property
+    def getVoteCount(self):
+        reviews = self.review_set.all()
+        one_star = reviews.filter(rating=1).count()
+        two_stars = reviews.filter(rating=2).count()
+        three_stars = reviews.filter(rating=3).count()
+        four_stars = reviews.filter(rating=4).count()
+        five_stars = reviews.filter(rating=1).count()
+        total_votes = reviews.count()
+
+        ratio = ((sum(reviews) / total_votes) * 100) 
+        self.vote_total = total_votes
+        self.vote_ratio = ratio
+        self.save()
+
+
+
 
 class Review(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)

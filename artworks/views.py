@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import HttpResponse
 from .models import Artwork
-from .forms import ArtworkForm
+from .forms import ArtworkForm, ReviewForm
 
 
 # This is the path  http://127.0.0.1:8000/artworks/
@@ -15,10 +16,22 @@ def artworks(request):
 # http://127.0.0.1:8000/artwork/1/
 def artwork(request, pk):
     artworkObj = Artwork.objects.get(id=pk)
-    tags = artworkObj.tags.all()
-    print("artworkObj:", artworkObj)
+    form = ReviewForm()
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        review = form.save(commit=False)
+        review.artwork = artworkObj
+        review.owner = request.user.profile
+        review.save()
+
+        artworkObj.getVoteCount()
+        
+        messages.success(request, 'Your review was successfully submitted.')
+        return redirect('artwork', pk=artworkObj.id)
+
     return render(
-        request, "artworks/single-artwork.html", {"artwork": artworkObj, "tags": tags}
+        request, "artworks/single-artwork.html", {"artwork": artworkObj, 'form': form}
     )
 
 
@@ -26,6 +39,7 @@ def artwork(request, pk):
 def createArtwork(request):
     profile = request.user.profile
     form = ArtworkForm()
+    
     if request.method == "POST":
         form = ArtworkForm(request.POST, request.FILES)
         if form.is_valid():
