@@ -10,19 +10,38 @@
     <img src="{{ profile.profile_image.url }}" style="max-width: 400px; border-radius: 1%;" class="card-img-top" alt="profile image" />
       <div class="card">
         <div class="card-body">
+
+          {% if profile.social_insta %}
             <p class="card-text">
-              <h6 class="card-text">{{profile.media}}</h6>
+              <a class="card-text" href="{{profile.social_insta}}" target="_blank">instagram</a>
             </p>
-                <p class="card-text">
-                    <h6 class="card-text">{{profile.brief_bio}}</h6>
-                </p>
-                  {% for criteria in criterias %}
+          {% endif %}
+
+          {% if profile.social_twitter %}
+            <p class="card-text">
+              <a class="card-text" href="{{profile.social_twitter}}" target="_blank">twitter</a>
+            </p>
+          {% endif %}
+
+          
+          {% if profile.social_other %}
+          <p class="card-text">
+            <a class="card-text" href="{{profile.social_other}}" target="_blank"></a>
+          </p>
+          {% endif %}
+
+          {% if profile.brief_bio %}
+            <p class="card-text">
+                <h6 class="card-text">{{profile.brief_bio}}</h6>
+            </p>
+          {% endif %}
+                  {% comment %} {% for criteria in criterias %}
                   <p class="card-text">
                     <h6 class="card-text">{{criteria}}</h6>
                   </p>
-                  {% endfor %}
+                  {% endfor %} {% endcomment %}
                   
-                    <a href="{{profile.website}}" target="_blank" button type="button" class="btn btn-primary">Website</a>
+              <a href="{{profile.website}}" target="_blank" button type="button" class="btn btn-primary">Website</a>
                   
               <a href="#" button type="button" class="btn btn-primary">Send Internal Message</button></a>
               <hr>
