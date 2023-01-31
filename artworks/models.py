@@ -28,13 +28,12 @@ class Artwork(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-vote_ratio', '-vote_total', 'title']
+        ordering = ["-vote_ratio", "-vote_total", "title"]
 
     @property
     def reviewers(self):
-        queryset = self.review_set.all().values_list('owner__id', flat=True)
+        queryset = self.review_set.all().values_list("owner__id", flat=True)
         return queryset
-
 
     @property
     def getVoteCount(self):
@@ -46,12 +45,10 @@ class Artwork(models.Model):
         five_stars = reviews.filter(rating=1).count()
         total_votes = reviews.count()
 
-        ratio = ((sum(reviews) / total_votes) * 100) 
+        ratio = (sum(reviews) / total_votes) * 100
         self.vote_total = total_votes
         self.vote_ratio = ratio
         self.save()
-
-
 
 
 class Review(models.Model):
@@ -75,7 +72,7 @@ class Review(models.Model):
     )
 
     class Meta:
-        unique_together = [['owner'], ['artwork']]
+        unique_together = [["owner"], ["artwork"]]
 
     def __str__(self):
         return self.rating

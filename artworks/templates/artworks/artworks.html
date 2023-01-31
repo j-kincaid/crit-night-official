@@ -33,8 +33,14 @@
                 </p>
                 <p class="card-text">{{artwork.description}}</p>
                 <p class="card-text">{{artwork.topic}}</p>
-                <p class="card-text">Score {{artwork.vote_ratio}}%</p>
+                {% comment %} <p class="card-text">Score {{artwork.vote_ratio}}%</p> {% endcomment %}
+
+                {% if artwork.vote_total %}
+
+                <p class="card-text">{{artwork.vote_ratio}}%</p>
                 <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
+
+                {%  endif %}
                 <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">Detail View</a>
 
                 {% comment %} {% if artwork.owner.is_authenticated %}
@@ -42,20 +48,19 @@
                     <a href="{% url 'update-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Edit</a>
                     <a href="{% url 'delete-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Delete</a>
 
-                {% endif %} {% endcomment %}
-
-                <p>Votes on criteria of:</p>
+                {% endif %} 
+                 <p>Stars:</p>
                     {% for tag in artwork.tags.all %}
                         <span class="badge text-bg-light">
                             <small>{{tag}}</small>
                         </span>
-                    {% endfor %}
+                    {% endfor %} {% endcomment %}
 
-                    {% for criteria in profile.criteria_set.all|slice:"5" %}
+                    {% comment %} {% for criteria in profile.criteria_set.all|slice:"5" %}
                     <li class="nav-item">
                       <p class="card-text"><small>{{criteria}}.</small></p>
                     </li>
-                  {% endfor %}
+                  {% endfor %} {% endcomment %}
 
             </div>
         </div>
@@ -83,23 +88,31 @@
         <div class="container text-center">
             <div class="container"> 
 
-                {% for artwork in artworks %}
-                    <div class="row row-cols-6">
-                        <div class="col">Artwork</div>
-                        <div class="col">Originality</div>
-                        <div class="col">Technique</div>
-                        <div class="col">Impact</div>
-                        <div class="col">Final Score</div>
-                    </div>
-                    <div class="row row-cols-6">
+                <table class="table table-sm table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Average Score</th>
+                    <th scope="col">Votes Received</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for artwork in artworks %}
+                  <tr>
+                    <td>{{artwork.title}}</td>
+                    <td>{{artwork.vote_ratio}}%</td>
+                    <td>{{artwork.vote_total}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table> 
+                    {% comment %} <div class="row row-cols-6">
                         <div class="col">{{artwork.title}}</div>
                         <div class="col">{{artwork.vote_ratio}}%</div>
-                        <div class="col">{{artwork.vote_ratio}}%</div>
-                        <div class="col">{{artwork.vote_ratio}}%</div>
-                        <div class="col">{{artwork.vote_total}}%</div>
+                        <div class="col">{{artwork.vote_total}}</div>
                     </div>
-
-                {% endfor %}
+                </table> {% endcomment %}
             </div>
         </div>
     </div>

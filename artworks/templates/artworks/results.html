@@ -4,12 +4,23 @@
 <div class ="container text-center">
 
    <table class="table table-sm table-striped">
+
+    {% for artwork in artworks %}
+        <div class="row row-cols-6">
+            <div class="col">Artwork</div>
+            <div class="col">Average Score</div>
+            <div class="col">Votes Received</div>
+        </div>
+        <div class="row row-cols-6">
+            <div class="col">{{artwork.title}}</div>
+            <div class="col">{{artwork.vote_ratio}}%</div>
+            <div class="col">{{artwork.vote_total}}</div>
+        </div>
+
+    {% endfor %}
                 <thead>
                   <tr>
                     <th scope="col">Title</th>
-                    <th scope="col">Criteria 1</th>
-                    <th scope="col">Criteria 2</th>
-                    <th scope="col">Criteria 3</th>
                     <th scope="col">Average Score</th>
                     <th scope="col">Votes Received</th>
                   </tr>
@@ -17,9 +28,6 @@
                 <tbody>
                   <tr>
                     <th scope="row">{{artwork.title}}</th>
-                    <td>{{artwork.vote_ratio}}%</td>
-                    <td>{{artwork.vote_ratio}}%</td>
-                    <td>{{artwork.vote_ratio}}%</td>
                     <td>{{artwork.vote_ratio}}%</td>
                     <td>{{artwork.vote_total}}</td>
                   </tr>

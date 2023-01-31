@@ -6,7 +6,6 @@ from django.dispatch import receiver
 import uuid
 
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     # models.CASCADE Deletes the profile any time the profile gets deleted
@@ -33,6 +32,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user.username)
-
-
-
