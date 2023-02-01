@@ -85,16 +85,14 @@
 
                 {% for artwork in artworks %}
                     <div class="row row-cols-6">
+                        <div class="col">Artist</div>
                         <div class="col">Artwork</div>
-                        <div class="col">Originality</div>
-                        <div class="col">Technique</div>
-                        <div class="col">Impact</div>
-                        <div class="col">Final Score</div>
+                        <div class="col">Score</div>
+                        <div class="col">Votes</div>
                     </div>
                     <div class="row row-cols-6">
+                        <div class="col">{{artwork.owner}}</div>
                         <div class="col">{{artwork.title}}</div>
-                        <div class="col">{{artwork.vote_ratio}}%</div>
-                        <div class="col">{{artwork.vote_ratio}}%</div>
                         <div class="col">{{artwork.vote_ratio}}%</div>
                         <div class="col">{{artwork.vote_total}}%</div>
                     </div>
