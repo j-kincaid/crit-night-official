@@ -17,95 +17,63 @@
         
         <p> Plug is in its 11th year now. The Crit Night app is designed to track responses to the art during the informal sessions. It incorporates a rubric to guide the panel in topics or themes to prioritize the conversation. Once the app is developed, maybe I'll have the confidence to present it as a tool for use at an event!</p>
         
-        </div>
+    </div>
 
     <h3>Works for Discussion</h3>
-<hr>
+    <hr>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for artwork in artworks|slice:"15" %}
         <div class="col">
             <div class="card" style="width: 18rem;">
                 <img src="{{ artwork.featured_image.url }}" class="card-img-top img-thumbnail"  alt="detail of artwork">
                 <div class="card-body">
-                    <h5 class="card-title">{{artwork.title}}</h5>
-                <p class="card-text">
-                    By <a href="{% url 'user-profile' artwork.owner.id %}">{{artwork.owner.name}}</a>
-                </p>
-                <p class="card-text">{{artwork.description}}</p>
-                <p class="card-text">{{artwork.topic}}</p>
-                <p class="card-text">Score {{artwork.vote_ratio}}%</p>
-                <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
-                <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">Detail View</a>
-
-                {% comment %} {% if artwork.owner.is_authenticated %}
-
-                    <a href="{% url 'update-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Edit</a>
-                    <a href="{% url 'delete-artwork' artwork.id %}" class="btn btn-secondary btn-sm">Delete</a>
-
-                {% endif %} {% endcomment %}
-
-                <p>Votes on criteria of:</p>
-                    {% for tag in artwork.tags.all %}
-                        <span class="badge text-bg-light">
-                            <small>{{tag}}</small>
-                        </span>
+                    <h6 class="card-title">{{artwork.title}}</h6>
+                    <p class="card-text">
+                        By <a href="{% url 'user-profile' artwork.owner.id %}">{{artwork.owner.name}}</a>
+                    </p>
+                    <p>Description: {{artwork.description}}</p>
+                    <p>{{artwork.topic}}</p>
+                    <p class="card-text">Average Score {{artwork.vote_ratio}}%</p>
+                    <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
+                    {% for review in artwork.review_set.all %}
+                    
+                        <p class="stars">{{review.rating}}</p>
+                    
                     {% endfor %}
-
-                    {% for criteria in profile.criteria_set.all|slice:"5" %}
-                    <li class="nav-item">
-                      <p class="card-text"><small>{{criteria}}.</small></p>
-                    </li>
-                  {% endfor %}
-
+                    <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">Detail View</a>
+                </div>
             </div>
         </div>
-    </div>
         {% endfor %}
     </div>
-
-                    {% comment %} <div>
-                      <p>Connect Artworks with panelists/critics:</p>
-                      {% for tag in artwork.tags.all %}
-                      <h5>{{artwork.title}}</h5>
-                          <span class="badge text-bg-light">
-                            <p><a href="{% url 'artwork' artwork.id %}">Critic: {{artwork.critic.name}}</a></p>
-                          <small>{{tag}}</small>
-                          </span>
-                      {% endfor %}
-                  
-                  </div>  {% endcomment %}
-
-  
 <br />
 <hr>
 <h2>Instant Feedback</h2>
 <h4>These scores provide an "at a glance" response to the work.</h4>
-<div class="container text-center">
-    <div class="container"> 
-
-        <table class="table table-sm table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Artist</th>
-            <th scope="col">Title</th>
-            <th scope="col">Average Score</th>
-            <th scope="col">Votes Received</th>
-
-          </tr>
-        </thead>
-        <tbody>
-            {% for artwork in artworks %}
-          <tr>
-            <td>{{artwork.owner.name}}</td>
-            <td>{{artwork.title}}</td>
-            <td>{{artwork.vote_ratio}}%</td>
-            <td>{{artwork.vote_total}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table> 
+    <div class="container text-center">
+        <div class="container"> 
+            <table class="table table-sm table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Artist</th>
+                <th scope="col">Title</th>
+                <th scope="col">Average Score</th>
+                <th scope="col">Votes Received</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for artwork in artworks %}
+            <tr>
+                <td>{{artwork.owner.name}}</td>
+                <td>{{artwork.title}}</td>
+                <td>{{artwork.vote_ratio}}%</td>
+                <td>{{artwork.vote_total}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table> 
+        </div>
     </div>
-</div>
 </div>
 </div>
 {% endblock content %}
