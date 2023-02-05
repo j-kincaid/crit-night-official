@@ -34,10 +34,14 @@ class ReviewForm(ModelForm):
         fields = ['rating', 'comments']
 
         labels = {
-            'rating': 'How many stars?',
+            'rating': 'How well does the work achieve the goal?',
             'comments': 'What works, needs work, helpful ideas'
         }
 
     def __init__(self, *args, **kwargs):
         super(ReviewForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({"class": "input"})
+
 

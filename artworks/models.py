@@ -28,20 +28,26 @@ class Artwork(models.Model):
 
     class Meta:
         ordering = ['-vote_ratio', '-vote_total', 'title']
+        # Projects display in descending order by rating and number of reviews, otherwise by title.
 
-
+    @property
+    def reviewers(self):
+        queryset = self.review_set.all().ratings_list('owner__id', flat=True)
+        return queryset
+        
     @property
     def getVoteCount(self):
         reviews = self.review_set.all()
 
-        upVotes = reviews.filter(value='up').count()
+        upVotes = reviews.filter(rating='up').count()
         totalVotes = reviews.count()
 
         ratio = (upVotes / totalVotes) * 100
         self.vote_total = totalVotes
         self.vote_ratio = ratio
-
         self.save()
+
+
 
 
 class Review(models.Model):

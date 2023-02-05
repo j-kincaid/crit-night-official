@@ -9,6 +9,7 @@
 <h2>{{artwork.title}}</h2>
 <h3>About the Artwork</h3>
 <p>{{artwork.description}}</p>
+<h5>I would like feedback on:</h5>
 <p>{{artwork.topic}}</p>
 
 
@@ -32,16 +33,17 @@
         <div class="card" style="width: 18rem;">
         <h3 class="singleArtwork__subtitle">Feedback</h3>
         <p class="stars">{{review.rating}}</p>
+        <p><small>Instant feedback in the form of up and down votes is anonymous.</small> </p>
         <h5 class="artwork--rating">
             {{artwork.vote_ratio}}% Positive Feedback ({{artwork.vote_total}}
             Vote{{artwork.vote_total|pluralize:"s"}})
         </h5>
 
             {% if request.user.profile.id in artwork.reviewers %}
-                <p>You have already submitted your review for this artwork</p>
+                <p>You have already submitted your review for this artwork.</p>
 
             {% elif request.user.profile == artwork.owner %}
-                <p>You cannot review your own work</p>
+                <p>You cannot review your own work.</p>
 
             {% elif request.user.is_authenticated %}
             
@@ -55,29 +57,29 @@
             {% endfor %}
             <input type="button" class="btn btn-outline-success" value="Add a review" />
         </form>
+
         {% else %}
-            <a href="{% url 'login' %}?next={{request.path}}">Please sign in to leave a review</a>
+            <a href="{% url 'login' %}?next={{request.path}}">Please sign in to leave a review.</a>
         {% endif %}
         
         <div class="card" style="width: 18rem;">
             {% for review in artwork.review_set.all %}
-                {% if review.rating %}
+                {% if review.comments %}
                 <div class="comment">
-                    <p class="stars">{{review.rating}}</p>
                     <a href="{% url 'user-profile' review.owner.id  %}">
                         <img class="card-img-top" src="{{review.owner.profile_image.url}}" alt="reviewer profile image" />
                     </a>
 
                     <a href="{% url 'user-profile' review.owner.id  %}"
-                        class="comment__author">{{review.owner.name}}</a>
-                        <h6>What works:</h6>
-                            <p class="comment__info">{{review.What_works|linebreaksbr}}</p>
-                        <h6>What needs work:</h6>
-                            <p class="comment__info">{{review.What_needs_work|linebreaksbr}}</p>
-                        <h6>What might work:</h6>
-                            <p class="comment__info">{{review.What_might_work|linebreaksbr}}</p>
+                    class="comment__author">{{review.owner.name}}</a>
+                        <h6>1. What works?
+                        <h6>2. What needs work?</h6>
+                        <h6>3. What might work?</h6>
 
-                {% endif %}
+                            <div class="comment">
+                                <p class="comment__info">{{review.comments|linebreaksbr}}</p>
+                            </div>
+                    {% endif %}
                 {%  endfor %}
                 </div>
         </div>
