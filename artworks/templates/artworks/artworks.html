@@ -15,13 +15,14 @@
         
         <p>Moderated by a rotating panel of local artists and art professionals, 3 artists are selected to participate at each CRIT NIGHT. Open to the public, the goal of CRIT NIGHT is to encourage open discussion of artists’ work and to activate both the artist and audience engaged dialogue that will provoke artistic growth and the public’s engagement.</p>
         
-        <p> Plug is in its 11th year now. The Crit Night app is designed to track responses to the art during the informal sessions. It incorporates a rubric to guide the panel in topics or themes to prioritize the conversation. Once the app is developed, maybe I'll have the confidence to present it as a tool for use at an event!</p>
+        <p> Plug is in its 11th year now. The Crit Night app is designed to track responses to the art during the informal sessions. It incorporates a rubric to guide the panel in topics or themes to prioritize the conversation.</p>
         
     </div>
 
     <h3>Works for Discussion</h3>
     <hr>
     <div class="row row-cols-1 row-cols-md-3 g-4">
+
         {% for artwork in artworks|slice:"15" %}
         <div class="col">
             <div class="card" style="width: 18rem;">
@@ -33,6 +34,9 @@
                     </p>
                     <p>Description: {{artwork.description}}</p>
                     <p>{{artwork.topic}}</p>
+                    
+                    <!--- voting per artwork/on each card -->
+
                     <p class="card-text">Average Score {{artwork.vote_ratio}}%</p>
                     <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
                     {% for review in artwork.review_set.all %}
@@ -45,6 +49,7 @@
             </div>
         </div>
         {% endfor %}
+        
     </div>
 <br />
 <hr>

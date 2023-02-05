@@ -31,15 +31,13 @@ class ArtworkForm(ModelForm):
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['rating', 'Sum_it_up', 'What_works', 'What_needs_work', 'What_might_work']
+        fields = ['rating', 'comments']
 
         labels = {
             'rating': 'How many stars?',
-            'Sum_it_up': 'Add a brief headline',
-            'What_works': 'Positive feedback:',
-            'What_needs_work': 'Specific, critical feedback:',
-            'What_might_work': 'A potential direction for the work:'
+            'comments': 'What works, needs work, helpful ideas'
         }
 
     def __init__(self, *args, **kwargs):
         super(ReviewForm, self).__init__(*args, **kwargs)
+
