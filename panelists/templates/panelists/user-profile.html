@@ -62,15 +62,15 @@
                           <p class="card-text">Score {{artwork.vote_ratio}}%</p>
                           <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
                           <p class="card-text">
-                          <span class="artwork-rating">{{artwork.vote_ratio}}%</span> Stars
+                          <span class="artwork-value">{{artwork.vote_ratio}}%</span> Stars
                             {{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}
                           </p>
                         
-                        <p class="card-text">
+                        {% comment %} <p class="card-text">
                           {% for tag in artwork.tags.all %}
                             <span style="border:1px solid darkgrey;"><small>{{tag}}</small></span>
                           {%  endfor %}
-                        </p>
+                        </p> {% endcomment %}
                       </div>
                   </div>
               {% endfor %}

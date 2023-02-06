@@ -37,7 +37,7 @@
                     <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
                     {% for review in artwork.review_set.all %}
                     
-                        <p class="stars">{{review.rating}}</p>
+                        <p class="stars">{{review.value}}</p>
                     
                     {% endfor %}
                     <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">Detail View</a>
