@@ -44,7 +44,7 @@
                   
               <a href="{{profile.website}}" target="_blank" button type="button" class="btn btn-primary">Website</a>
                   
-              <a href="#" button type="button" class="btn btn-primary">Send Internal Message</button></a>
+              <a href="{% url 'create-message' profile.id %}" button type="button" class="btn btn-primary">Send Internal Message</button></a>
               <hr>
           <div class="container">
             <h3>Works in my conversations<h3>

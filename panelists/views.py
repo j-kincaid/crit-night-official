@@ -3,8 +3,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import CustomUserCreationForm, ProfileForm
-from .models import Profile
+from .forms import CustomUserCreationForm, ProfileForm, MessageForm
+from .models import Profile, Message
 
 
 def loginUser(request):
@@ -100,3 +100,29 @@ def editAccount(request):
     context = {'form': form}
     return render(request, 'panelists/profile_form.html', context)
 
+
+@login_required(login_url="login")
+def inbox(request):
+    profile = request.user.profile
+    messageRequests = profile.messages.all()
+    unreadCount = messageRequests.filter(is_read=False).count()
+    context = {'messageRequests': messageRequests, 'unreadCount': unreadCount}
+    return render(request, 'panelists/inbox.html', context)
+
+
+@login_required(login_url='login')
+def viewMessage(request, pk):
+    profile = request.user.profile
+    message = profile.messages.get(id=pk)
+    if message.is_read == False:
+        message.is_read = True
+        message.save()
+    context = {'message': message}
+    return render(request, 'panelists/message.html', context)
+
+
+def createMessage(request, pk):
+    recipient = Profile.objects.get(id=pk)
+    form = MessageForm()
+    context = {'recipient': recipient, 'form': form}
+    return render(request, 'panelists/message_form.html', context)
