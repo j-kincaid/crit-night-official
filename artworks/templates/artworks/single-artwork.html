@@ -56,6 +56,7 @@
             {% csrf_token %}
             {% for field in form %}
             <div class="form__field">
+                
                 <label for="">{{field.label}}</label>
                 {{field}}
             </div>
@@ -66,27 +67,18 @@
         {% else %}
             <a href="{% url 'login' %}?next={{request.path}}">Please sign in to leave a review.</a>
         {% endif %}
-        
         <div class="card" style="width: 18rem;">
             {% for review in artwork.review_set.all %}
                 {% if review.comments %}
-                <div class="comment">
-                    <a href="{% url 'user-profile' review.owner.id  %}">
-                        <img class="card-img-top" src="{{review.owner.profile_image.url}}" alt="reviewer profile image" />
-                    </a>
-
-                    <a href="{% url 'user-profile' review.owner.id  %}"
-                    class="comment__author">{{review.owner.name}}</a>
-                        <h6>1. What works?
-                        <h6>2. What needs work?</h6>
-                        <h6>3. What might work?</h6>
-
-                            <div class="comment">
-                                <p class="comment__info">{{review.comments|linebreaksbr}}</p>
-                            </div>
-                    {% endif %}
-                {%  endfor %}
-                </div>
+                <a href="{% url 'user-profile' review.owner.id  %}">
+                    <img class="card-img-top" src="{{review.owner.profile_image.url}}" alt="reviewer profile image" />
+                </a>
+                <a href="{% url 'user-profile' review.owner.id  %}"
+                class="comment__author">{{review.owner.name}}</a>
+                    {{review.comments}}
+                {% endif %} 
+            {%  endfor %}
+        </div>
         </div>
 
     </div>

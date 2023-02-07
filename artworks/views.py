@@ -26,13 +26,13 @@ def artwork(request, pk):
         review.owner = request.user.profile
         review.save()
 
-        artworkObj.getVoteCount
+        artworkObj.getVoteCount()
         
         messages.success(request, 'Your review was successfully submitted!')
         return redirect('artwork', pk=artworkObj.id)
 
     return render(
-        request, "artworks/single-artwork.html", {"artwork": artworkObj, 'tags': tags}
+        request, "artworks/single-artwork.html", {"artwork": artworkObj, 'form': form}
     )
 
 

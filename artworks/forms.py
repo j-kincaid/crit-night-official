@@ -34,7 +34,7 @@ class ReviewForm(ModelForm):
         fields = ['value', 'comments']
 
         labels = {
-            'value': 'How well does the work achieve the goal?',
+            'value': 'Place your anonymous vote',
             'comments': 'What works, needs work, helpful ideas'
         }
 
@@ -43,5 +43,4 @@ class ReviewForm(ModelForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({"class": "input"})
-
 

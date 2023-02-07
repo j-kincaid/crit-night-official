@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from django.db.models.deletion import CASCADE
 from panelists.models import Profile
 
 
@@ -64,14 +65,11 @@ class Review(models.Model):
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
 
-    class Meta:
-        unique_together = [['owner'], ['artwork']]
-
     def __str__(self):
         return self.value
 
 
-# Use Tag to create a Many to Many relationship. It connects the Artworks with the votes they receive.
+# Use Tag to create a Many to Many relationship. 
 
 
 class Tag(models.Model):
