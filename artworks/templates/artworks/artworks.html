@@ -32,7 +32,7 @@
                     <p class="card-text">
                         By <a href="{% url 'user-profile' artwork.owner.id %}">{{artwork.owner.name}}</a>
                     </p>
-                    <p>Description: {{artwork.description}}</p>
+                    <p><small>added {{artwork.created}}</small></p>
                     <p>{{artwork.topic}}</p>
                     
                     <!--- voting per artwork/on each card -->
@@ -41,7 +41,7 @@
                     <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
                     {% for review in artwork.review_set.all %}
                     
-                        <p class="stars">{{review.rating}}</p>
+                        <p class="stars">{{review.value}}</p>
                     
                     {% endfor %}
                     <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">Detail View</a>
@@ -64,6 +64,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Average Score</th>
                 <th scope="col">Votes Received</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -73,6 +74,7 @@
                 <td>{{artwork.title}}</td>
                 <td>{{artwork.vote_ratio}}%</td>
                 <td>{{artwork.vote_total}}</td>
+                <td><a href="{% url 'artwork' artwork.id %}">View</td>
             </tr>
             {% endfor %}
             </tbody>

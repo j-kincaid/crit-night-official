@@ -31,10 +31,10 @@ class ArtworkForm(ModelForm):
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['rating', 'comments']
+        fields = ['value', 'comments']
 
         labels = {
-            'rating': 'How well does the work achieve the goal?',
+            'value': 'How well does the work achieve the goal?',
             'comments': 'What works, needs work, helpful ideas'
         }
 

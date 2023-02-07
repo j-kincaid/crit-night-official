@@ -7,6 +7,11 @@
 <img style="max-width: 800px;" src="{{ artwork.featured_image.url }}">
 
 <h2>{{artwork.title}}</h2>
+<hr>
+{% for tag in artwork.tags.all %}
+    <span style="border:1px solid gray;">{{tag}}</span>
+{% endfor %}
+<hr>
 <h3>About the Artwork</h3>
 <p>{{artwork.description}}</p>
 <h5>I would like feedback on:</h5>
@@ -31,10 +36,10 @@
 
     <div class="col">
         <div class="card" style="width: 18rem;">
-        <h3 class="singleArtwork__subtitle">Feedback</h3>
-        <p class="stars">{{review.rating}}</p>
+        </h3>Feedback</>
+        <p class="stars">{{review.value}}</p>
         <p><small>Instant feedback in the form of up and down votes is anonymous.</small> </p>
-        <h5 class="artwork--rating">
+        <h5 class="artwork--value">
             {{artwork.vote_ratio}}% Positive Feedback ({{artwork.vote_total}}
             Vote{{artwork.vote_total|pluralize:"s"}})
         </h5>

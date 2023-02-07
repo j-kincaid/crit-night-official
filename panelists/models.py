@@ -11,6 +11,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     # models.CASCADE Deletes the profile any time the profile gets deleted
     name = models.CharField(max_length=200, null=True, blank=True)
+    role = models.CharField(max_length=200, null=True, blank=True)
     media = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=500, null=True, blank=True)
     username = models.CharField(max_length=200, null=True, blank=True)

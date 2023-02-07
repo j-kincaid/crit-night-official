@@ -16,6 +16,7 @@ def artworks(request):
 # http://127.0.0.1:8000/artwork/1/
 def artwork(request, pk):
     artworkObj = Artwork.objects.get(id=pk)
+    tags = artworkObj.tags.all()
     form = ReviewForm()
 
     if request.method == "POST":
@@ -31,7 +32,7 @@ def artwork(request, pk):
         return redirect('artwork', pk=artworkObj.id)
 
     return render(
-        request, "artworks/single-artwork.html", {"artwork": artworkObj, 'form': form}
+        request, "artworks/single-artwork.html", {"artwork": artworkObj, 'tags': tags}
     )
 
 
