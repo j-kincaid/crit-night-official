@@ -8,9 +8,9 @@
 
 <h2>{{artwork.title}}</h2>
 <hr>
-{% for tag in artwork.tags.all %}
+{% comment %} {% for tag in artwork.tags.all %}
     <span style="border:1px solid gray;">{{tag}}</span>
-{% endfor %}
+{% endfor %} {% endcomment %}
 <hr>
 <h3>About the Artwork</h3>
 <p>{{artwork.description}}</p>

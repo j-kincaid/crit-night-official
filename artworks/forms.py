@@ -14,7 +14,7 @@ class ArtworkForm(ModelForm):
             "topic",
             "demo_link",
             "source_link",
-            # "tags",
+            "tags",
         ]
         widgets = {
             "tags": forms.CheckboxSelectMultiple(),
@@ -27,15 +27,14 @@ class ArtworkForm(ModelForm):
             field.widget.attrs.update({"class": "input"})
 
 
-
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['value', 'comments']
+        fields = ["value", "comments"]
 
         labels = {
-            'value': 'Place your anonymous vote',
-            'comments': 'What works, needs work, helpful ideas'
+            "value": "Place your anonymous vote",
+            "comments": "What works, needs work, helpful ideas",
         }
 
     def __init__(self, *args, **kwargs):
@@ -43,4 +42,3 @@ class ReviewForm(ModelForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({"class": "input"})
-
