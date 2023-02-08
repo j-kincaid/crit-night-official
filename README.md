@@ -12,10 +12,7 @@ Plug is in its 11th year now. The Crit Night app is designed to track responses 
 
 ### FEATURES:
 
-- Administrator account creation
-- Moderator account creation
-- Guest account creation for walk-in art examiners
-- Geolocation API associated with login to limit users to those who have attended the event on site
+- Moderator and Artist account creation
 - Logins with validation
 - Thumbnail images of the artworks on display
 - Artists can create, read, update, and delete their own images.
