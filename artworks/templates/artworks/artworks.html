@@ -37,8 +37,11 @@
                     
                     <!--- voting per artwork/on each card -->
 
+                    <p class="card-text">Average Stars {{artwork.star_ratio}}%</p>
                     <p class="card-text">Average Score {{artwork.vote_ratio}}%</p>
+                    <p class="card-text">{{artwork.star_total}} Vote{{artwork.star_total|pluralize:"s"}}</p>
                     <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
+                   
                     {% for review in artwork.review_set.all %}
                     
                         <p class="stars">{{review.value}}</p>

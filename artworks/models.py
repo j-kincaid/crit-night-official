@@ -15,6 +15,8 @@ class Artwork(models.Model):
     demo_link = models.CharField(max_length=2000, null=True, blank=True)
     source_link = models.CharField(max_length=2000, null=True, blank=True)
     tags = models.ManyToManyField("Tag", blank=True)
+    star_total = models.IntegerField(default=0, null=True, blank=True)
+    star_ratio = models.IntegerField(default=0, null=True, blank=True)
     vote_total = models.IntegerField(default=0, null=True, blank=True)
     vote_ratio = models.IntegerField(default=0, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -26,7 +28,7 @@ class Artwork(models.Model):
         return self.title
 
     class Meta:
-        ordering = ["-vote_ratio", "-vote_total", "title"]
+        ordering = ["-star_ratio", "-star_total", "-vote_ratio", "-vote_total", "title"]
         # Projects display in descending order by value and number of reviews, otherwise by title.
 
     @property
@@ -46,6 +48,17 @@ class Artwork(models.Model):
         self.vote_ratio = ratio
         self.save()
 
+    @property
+    def getStarCount(self):
+        stars = self.star_set.all()
+        rating = stars(includes="&#11088; ").count()
+
+        fraction = (rating / stars) * 100
+        self.star_total = stars
+        self.star_ratio = fraction
+        self.save()
+
+
 
 class Review(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
@@ -56,10 +69,31 @@ class Review(models.Model):
     )
     comments = models.TextField(null=True, blank=True)
     value = models.CharField(max_length=200, choices=VOTE_TYPE)
+    
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
+    class Star(models.TextChoices):
+        one = "&#11088; "
+        two = one + one
+        three = two + one
+        four = three + one
+        five = four + one
+
+    stars = models.CharField(
+        max_length=50,
+        choices=Star.choices,
+        default=Star.five,
+    )
+
+    def is_rated(self):
+        return self.stars in {
+            self.stars,
+        }
+
+    def __str__(self):
+        return self.stars
 
     def __str__(self):
         return self.value
@@ -78,29 +112,3 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
-
-class Feedback(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
-    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(
-        default=uuid.uuid4, unique=True, primary_key=True, editable=False
-    )
-
-    class Stars(models.TextChoices):
-        one = "&#11088; "
-        two = one + one
-        three = two + one
-        four = three + one
-        five = four + one
-
-    stars = models.CharField(
-        max_length=50,
-        choices=Stars.choices,
-        default=Stars.three,
-    )
-
-    def is_rated(self):
-        return self.stars in {
-            self.stars,
-        }

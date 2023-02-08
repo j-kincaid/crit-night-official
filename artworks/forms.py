@@ -30,10 +30,11 @@ class ArtworkForm(ModelForm):
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ["value", "comments"]
+        fields = ["value", 'stars', "comments"]
 
         labels = {
             "value": "Place your anonymous vote",
+            'stars': 'Stars:',
             "comments": "What works, needs work, helpful ideas",
         }
 
