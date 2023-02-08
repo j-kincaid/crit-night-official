@@ -21,10 +21,10 @@ def artwork(request, pk):
 
     if request.method == "POST":
         form = ReviewForm(request.POST)
-        review = form.save(commit=False)
-        review.artwork = artworkObj
-        review.owner = request.user.profile
-        review.save()
+        # review = form.save(commit=False)
+        # review.artwork = artworkObj
+        # review.owner = request.user.profile
+        # review.save()
 
         artworkObj.getVoteCount()
 
