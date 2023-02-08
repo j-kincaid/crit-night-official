@@ -59,7 +59,6 @@ class Artwork(models.Model):
         self.save()
 
 
-
 class Review(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
@@ -69,11 +68,12 @@ class Review(models.Model):
     )
     comments = models.TextField(null=True, blank=True)
     value = models.CharField(max_length=200, choices=VOTE_TYPE)
-    
+
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
+
     class Star(models.TextChoices):
         one = "&#11088; "
         two = one + one
@@ -111,4 +111,3 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-
