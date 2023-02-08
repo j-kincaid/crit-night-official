@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponse
-from .models import Artwork
+from .models import Artwork, Tag
 from .forms import ArtworkForm, ReviewForm
 
 
@@ -27,12 +27,12 @@ def artwork(request, pk):
         review.save()
 
         artworkObj.getVoteCount()
-        
-        messages.success(request, 'Your review was successfully submitted!')
-        return redirect('artwork', pk=artworkObj.id)
+
+        messages.success(request, "Your review was successfully submitted!")
+        return redirect("artwork", pk=artworkObj.id)
 
     return render(
-        request, "artworks/single-artwork.html", {"artwork": artworkObj, 'form': form}
+        request, "artworks/single-artwork.html", {"artwork": artworkObj, "form": form}
     )
 
 
@@ -40,11 +40,11 @@ def artwork(request, pk):
 def createArtwork(request):
     profile = request.user.profile
     form = ArtworkForm()
-    
+
     if request.method == "POST":
         form = ArtworkForm(request.POST, request.FILES)
         if form.is_valid():
-            artwork = form.save(commit = False)
+            artwork = form.save(commit=False)
             artwork.owner = profile
             artwork.save()
             return redirect("artworks")
@@ -62,10 +62,10 @@ def updateArtwork(request, pk):
     if request.method == "POST":
         form = ArtworkForm(request.POST, request.FILES, instance=artwork)
         if form.is_valid():
-            form.save()
+            artwork = form.save()
             return redirect("artworks")
 
-    context = {"form": form}
+    context = {"form": form, "artwork": artwork}
     return render(request, "artworks/artwork_form.html", context)
 
 

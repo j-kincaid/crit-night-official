@@ -11,9 +11,7 @@ class Artwork(models.Model):
         null=True, blank=True, default="default_image.jpg"
     )
     description = models.TextField(null=True, blank=True)
-    topic = models.TextField(
-        default="I would like feedback on:", null=True, blank=True
-    )
+    topic = models.TextField(default="I would like feedback on:", null=True, blank=True)
     demo_link = models.CharField(max_length=2000, null=True, blank=True)
     source_link = models.CharField(max_length=2000, null=True, blank=True)
     tags = models.ManyToManyField("Tag", blank=True)
@@ -28,19 +26,19 @@ class Artwork(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-vote_ratio', '-vote_total', 'title']
+        ordering = ["-vote_ratio", "-vote_total", "title"]
         # Projects display in descending order by value and number of reviews, otherwise by title.
 
     @property
     def reviewers(self):
-        queryset = self.review_set.all().values_list('owner__id', flat=True)
+        queryset = self.review_set.all().values_list("owner__id", flat=True)
         return queryset
-        
+
     @property
     def getVoteCount(self):
         reviews = self.review_set.all()
 
-        upVotes = reviews.filter(value='up').count()
+        upVotes = reviews.filter(value="up").count()
         totalVotes = reviews.count()
 
         ratio = (upVotes / totalVotes) * 100
@@ -49,14 +47,12 @@ class Artwork(models.Model):
         self.save()
 
 
-
-
 class Review(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
     VOTE_TYPE = (
-        ('up', 'Up Vote'),
-        ('down', 'Down Vote'),
+        ("up", "Up Vote"),
+        ("down", "Down Vote"),
     )
     comments = models.TextField(null=True, blank=True)
     value = models.CharField(max_length=200, choices=VOTE_TYPE)
@@ -69,7 +65,7 @@ class Review(models.Model):
         return self.value
 
 
-# Use Tag to create a Many to Many relationship. 
+# Use Tag to create a Many to Many relationship.
 
 
 class Tag(models.Model):
