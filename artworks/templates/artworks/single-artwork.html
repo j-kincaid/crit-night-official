@@ -32,7 +32,7 @@
 </a>
 {% endif %}
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="feedback row row-cols-1 row-cols-md-3 g-4">
 
     <div class="col">
         <div class="card" style="width: 18rem;">
@@ -67,7 +67,7 @@
         {% else %}
             <a href="{% url 'login' %}?next={{request.path}}">Please sign in to leave a review.</a>
         {% endif %}
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 12rem;">
             {% for review in artwork.review_set.all %}
                 {% if review.comments %}
                 <a href="{% url 'user-profile' review.owner.id  %}">
@@ -75,6 +75,7 @@
                 </a>
                 <a href="{% url 'user-profile' review.owner.id  %}"
                 class="comment__author">{{review.owner.name}}</a>
+                   <p><small>{{review.created}}</small></p>
                     {{review.comments}}
                 {% endif %} 
             {%  endfor %}
