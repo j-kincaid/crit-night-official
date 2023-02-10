@@ -38,12 +38,41 @@ Plug is in its 11th year now. The Crit Night app is designed to track responses 
 | Guest/Public | All education levels | Anyone interested in art and looking for a fun cultural activity | 
 
 
-![Screenshot 2023-01-16 at 4 37 16 PM](https://user-images.githubusercontent.com/11914762/212775770-af8328fc-adae-48b9-b3b9-d6c87e7277a2.png)
+### Home page / Artworks
 
-![Screenshot 2023-01-16 at 4 38 08 PM](https://user-images.githubusercontent.com/11914762/212775781-514de811-6611-4425-8be6-c7f4eea98324.png)
+<img width="751" alt="gallery" src="https://user-images.githubusercontent.com/11914762/218135936-561d8417-bff5-42de-87ef-32fc20db9462.png">
 
+### Artwork Detail with Comment Form
 
-<img width="1306" alt="Screenshot 2023-01-31 at 5 31 03 PM" src="https://user-images.githubusercontent.com/11914762/215907687-6c111b43-0cb1-466d-9a24-7086b51efedb.png">
+<img width="634" alt="review_form" src="https://user-images.githubusercontent.com/11914762/218138414-1cc99a35-0e08-480b-bf2c-3574915cd10b.png">
+
+### Artwork Form
+
+<img width="674" alt="artwork_form" src="https://user-images.githubusercontent.com/11914762/218137890-29f78cb0-b039-44cf-bd54-7fdbac198a09.png">
+
+### Participants
+
+<img width="1065" alt="participants2" src="https://user-images.githubusercontent.com/11914762/218137637-69d96389-d6b0-40bd-8673-d493fa357d27.png">
+
+### Participant Profile/Account
+
+<img width="767" alt="profile" src="https://user-images.githubusercontent.com/11914762/218138622-b8031b1c-67cb-496b-a167-a00197182fea.png">
+
+### Edit Profile
+
+<img width="600" alt="edit_profile" src="https://user-images.githubusercontent.com/11914762/218138961-6ad61832-b83b-41b3-9ebd-b0498056225b.png">
+
+### Sign In
+
+<img width="458" alt="login" src="https://user-images.githubusercontent.com/11914762/218139470-b440a00a-b25e-4864-9f54-9b5dd7b20b4c.png">
+
+### Sign Up
+
+<img width="627" alt="registration" src="https://user-images.githubusercontent.com/11914762/218139559-03c3cc84-f4ab-4cfd-82ae-c3d418d4d86c.png">
+
+### Sign Out
+
+<img width="718" alt="logged_out" src="https://user-images.githubusercontent.com/11914762/218139644-cc25e469-5e28-4e7e-8b97-4035d4fb6437.png">
 
 
 #### This project is licensed under the terms of the [MIT license](https://choosealicense.com/licenses/mit/#).
