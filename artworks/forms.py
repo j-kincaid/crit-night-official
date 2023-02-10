@@ -14,7 +14,6 @@ class ArtworkForm(ModelForm):
             "topic",
             "demo_link",
             "source_link",
-            "tags",
         ]
         widgets = {
             "tags": forms.CheckboxSelectMultiple(),
