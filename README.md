@@ -44,7 +44,7 @@ Plug is in its 11th year now. The Crit Night app is designed to track responses 
 
 ### Artwork Detail with Comment Form
 
-<img width="634" alt="review_form" src="https://user-images.githubusercontent.com/11914762/218138414-1cc99a35-0e08-480b-bf2c-3574915cd10b.png">
+<img width="604" alt="Screenshot 2023-02-10 at 10 11 53 AM" src="https://user-images.githubusercontent.com/11914762/218140556-8174af0b-e4f5-4e38-a824-c193d6a0dd42.png">
 
 ### Artwork Form
 
