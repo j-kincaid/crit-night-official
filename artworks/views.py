@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponse
-from .models import Artwork
+from .models import Artwork, Tag
 from .forms import ArtworkForm, ReviewForm
 
 
@@ -26,7 +26,11 @@ def artwork(request, pk):
         review.owner = request.user.profile
         review.save()
 
+<<<<<<< HEAD
         artworkObj.getVoteCount
+=======
+        artworkObj.getVoteCount()
+>>>>>>> messages
 
         messages.success(request, "Your review was successfully submitted!")
         return redirect("artwork", pk=artworkObj.id)
@@ -62,10 +66,10 @@ def updateArtwork(request, pk):
     if request.method == "POST":
         form = ArtworkForm(request.POST, request.FILES, instance=artwork)
         if form.is_valid():
-            form.save()
+            artwork = form.save()
             return redirect("artworks")
 
-    context = {"form": form}
+    context = {"form": form, "artwork": artwork}
     return render(request, "artworks/artwork_form.html", context)
 
 

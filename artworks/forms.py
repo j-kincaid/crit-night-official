@@ -32,7 +32,11 @@ class ReviewForm(ModelForm):
         fields = ["value", "comments"]
 
         labels = {
+<<<<<<< HEAD
             "value": "Place your anonymous vote",
+=======
+            "value": "Place your vote",
+>>>>>>> messages
             "comments": "What works, needs work, helpful ideas",
         }
 

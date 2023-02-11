@@ -3,3 +3,6 @@ img.register-pic,
 img.account-image {
     max-width: 100px;
 }
+ul li {
+    list-style: none;
+}
