@@ -96,11 +96,6 @@ def editAccount(request):
             form.save()
 
             return redirect("account")
-<<<<<<< HEAD
-
-    context = {"form": form}
-    return render(request, "panelists/profile_form.html", context)
-=======
 
     context = {"form": form}
     return render(request, "panelists/profile_form.html", context)
@@ -151,4 +146,3 @@ def createMessage(request, pk):
 
     context = {"recipient": recipient, "form": form}
     return render(request, "panelists/message_form.html", context)
->>>>>>> messages

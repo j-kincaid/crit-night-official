@@ -44,8 +44,6 @@ class ProfileForm(ModelForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({"class": "input"})
-<<<<<<< HEAD
-=======
 
 
 class MessageForm(ModelForm):
@@ -58,4 +56,3 @@ class MessageForm(ModelForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({"class": "input"})
->>>>>>> messages

@@ -26,11 +26,7 @@ def artwork(request, pk):
         review.owner = request.user.profile
         review.save()
 
-<<<<<<< HEAD
         artworkObj.getVoteCount
-=======
-        artworkObj.getVoteCount()
->>>>>>> messages
 
         messages.success(request, "Your review was successfully submitted!")
         return redirect("artwork", pk=artworkObj.id)
