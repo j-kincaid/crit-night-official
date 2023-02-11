@@ -136,5 +136,13 @@ def createMessage(request, pk):
             message.sender = sender
             message.recipient = recipient
 
+            if sender:
+                message.name = sender.name
+                message.email = sender.email
+            message.save()
+
+            messages.success(request, "Your message has been submitted.")
+            return redirect('user-profile', pk=recipient.id)
+
     context = {"recipient": recipient, "form": form}
     return render(request, "panelists/message_form.html", context)
