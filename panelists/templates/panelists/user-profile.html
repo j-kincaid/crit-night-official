@@ -62,12 +62,6 @@
                           <span class="artwork-rating">{{artwork.vote_ratio}}%</span> Stars
                             {{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}
                           </p>
-                        
-                        <p class="card-text">
-                          {% for tag in artwork.tags.all %}
-                            <span style="border:1px solid darkgrey;"><small>{{tag}}</small></span>
-                          {%  endfor %}
-                        </p>
                       </div>
                   </div>
               {% endfor %}

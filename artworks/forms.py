@@ -33,7 +33,7 @@ class ReviewForm(ModelForm):
 
         labels = {
             "value": "Place your vote",
-            "comments": "What works, needs work, helpful ideas",
+            "comments": "What works, needs work, what might work",
         }
 
     def __init__(self, *args, **kwargs):

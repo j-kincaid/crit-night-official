@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from .models import Profile, Message
 
 
-
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User

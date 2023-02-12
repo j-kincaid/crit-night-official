@@ -26,8 +26,8 @@ class Artwork(models.Model):
         return self.title
 
     class Meta:
-        ordering = ["-vote_ratio", "-vote_total", "title"]
-        # Projects display in descending order by value and number of reviews, otherwise by title.
+        ordering = ["owner", "-vote_ratio", "-vote_total", "title"]
+        # Projects display in descending order by owner value and number of reviews, then by title.
 
     @property
     def reviewers(self):
@@ -40,8 +40,8 @@ class Artwork(models.Model):
 
         upVotes = reviews.filter(value="up").count()
         totalVotes = reviews.count()
-
         ratio = (upVotes / totalVotes) * 100
+
         self.vote_total = totalVotes
         self.vote_ratio = ratio
         self.save()
@@ -60,6 +60,9 @@ class Review(models.Model):
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
+
+    class Meta:
+        unique_together = [['owner', 'artwork']]
 
     def __str__(self):
         return self.value

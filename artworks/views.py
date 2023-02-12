@@ -26,6 +26,8 @@ def artwork(request, pk):
         review.owner = request.user.profile
         review.save()
 
+# The @property decorator in models.py allows you to run the calculation without it being a method().
+
         artworkObj.getVoteCount
 
         messages.success(request, "Your review was successfully submitted!")
