@@ -37,9 +37,10 @@
                     
                     <!--- voting per artwork/on each card -->
 
-                    <p class="card-text">Average Score 
-                       
-                            {% if artwork.vote_ratio >= 80 %}
+                    {{artwork.vote_ratio}}%</p>
+                    <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}} Received</p>
+                    <p class="card-text">Average Score
+                            {% comment %} {% if artwork.vote_ratio >= 80 %}
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
@@ -69,9 +70,8 @@
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
-                            {% endif %}
-                        {{artwork.vote_ratio}}%</p>
-                    <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}} Received</p>
+                            <p>
+                            {% endif %} {% endcomment %}
                   
                     <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">Detail View</a>
                 </div>

@@ -37,29 +37,30 @@ class Artwork(models.Model):
     @property
     def getVoteCount(self):
         reviews = self.review_set.all()
-
-        upVotes = reviews.filter(value="up").count()
+        upVotes = reviews.filter(value='up').count()
         totalVotes = reviews.count()
-        ratio = (upVotes / totalVotes) * 100
 
+        ratio = (upVotes / totalVotes) * 100
         self.vote_total = totalVotes
         self.vote_ratio = ratio
+
         self.save()
 
 
 class Review(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
-    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
     VOTE_TYPE = (
         ("up", "Up Vote"),
         ("down", "Down Vote"),
     )
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
     comments = models.TextField(null=True, blank=True)
     value = models.CharField(max_length=200, choices=VOTE_TYPE)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
+
 
     class Meta:
         unique_together = [['owner', 'artwork']]
