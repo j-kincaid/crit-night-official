@@ -48,7 +48,6 @@
                 <p>You cannot review your own work.</p>
 
             {% elif request.user.is_authenticated %}
-            
         <form class="form" action="{% url 'artwork' artwork.id %}" method="POST">
             <p><small>Instant feedback in the form of up and down votes is anonymous.</small> </p>
             {% csrf_token %}
@@ -71,6 +70,8 @@
             {% for review in artwork.review_set.all %}
             <div class="card" style="width: 18rem;">
                 {% if review.comments %}
+
+                <hr>
                     <a href="{% url 'user-profile' review.owner.id  %}">
                         <img class="card-img-top" src="{{review.owner.profile_image.url}}" alt="reviewer profile image" />
                     </a>
