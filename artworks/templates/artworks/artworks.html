@@ -39,8 +39,9 @@
 
                     {{artwork.vote_ratio}}%</p>
                     <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}} Received</p>
+                    {% if artwork.vote_ratio >= 80 %}
                     <p class="card-text">Average Score
-                            {% comment %} {% if artwork.vote_ratio >= 80 %}
+                           
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
@@ -70,12 +71,30 @@
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
-                            <p>
-                            {% endif %} {% endcomment %}
+                            {% endif %} 
                   
+
+
+                            <p>
                     <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">Detail View</a>
                 </div>
             </div>
+              {% for artwork in profile.artwork_set.all %}
+                  
+              <div class="card" style="width: 18rem;">
+                    <a href="{% url 'artwork' artwork.id %}"
+                      <img style="max-width: 50px;" src="{{ artwork.featured_image.url }}"></a>
+                        <p class="card-text">
+                          <h3>{{artwork.title}}</h3>
+                        </p>
+                          <img src="{{ artwork.featured_image.url }}" class="card-img-top img-thumbnail"  alt="detail of artwork">
+                          <div class="card-body">
+                              <h5 class="card-title">{{artwork.title}}</h5>
+                          <p class="card-text">Score {{artwork.vote_ratio}}%</p>
+                          <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
+                          <p class="card-text">
+                      </div>
+                      {% endfor %}
         </div>
         {% endfor %}
     </div>
