@@ -39,43 +39,95 @@
 
                     {{artwork.vote_ratio}}%</p>
                     <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}} Received</p>
-                    {% if artwork.vote_ratio >= 80 %}
+                    {% if artwork.vote_ratio >= 95 %}
+
+        <!-- 5 stars -->
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span> 
+                        <span class="fa fa-star checked"></span> 
+                    {% elif artwork.vote_ratio >= 94 %}                
+        <!-- 4.5 stars -->
                     <p class="card-text">Average Score
-                           
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span> 
-                            <span class="fa fa-star checked"></span> 
-                            {% elif artwork.vote_ratio >= 60 %}
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span> 
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span> 
-                            {% elif artwork.vote_ratio >= 40 %}
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span> 
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            {% elif artwork.vote_ratio >= 20 %}
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            {% elif artwork.vote_ratio <= 10 %}
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            {% endif %} 
-                  
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>  
+                        <span class="fa fa-star-half checked"></span>
+        <!-- 4 stars -->
+                    {% elif artwork.vote_ratio >= 84 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span> 
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span> 
+        <!-- 3.5 stars -->
+                    {% elif artwork.vote_ratio >= 74 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span> 
+                        <span class="fa fa-star-half checked"></span> 
+                        <span class="fa fa-star"></span>
 
+        <!-- 3 stars -->
+                    {% elif artwork.vote_ratio >= 64 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span> 
+                        <span class="fa fa-star"></span> 
+                        <span class="fa fa-star"></span> 
 
-                            <p>
+        <!-- 2.5 stars -->
+                    {% elif artwork.vote_ratio >= 50 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star-half checked"></span> 
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+
+        <!-- 2 stars -->
+                    {% elif artwork.vote_ratio >= 44 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span> 
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+
+        <!-- 1 star -->
+                    {% elif artwork.vote_ratio >= 24 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span> 
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+        <!-- 1 star -->
+                    {% elif artwork.vote_ratio >= 20 %}
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star-half checked"></span> 
+        <!-- 0.5 star -->
+
+                    {% elif artwork.vote_ratio >= 10 %}
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star-half checked"></span> 
+                    
+        <!-- 0 stars -->
+
+                    {% elif artwork.vote_ratio < 10 %}
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span> 
+                    {% endif %} 
+                  <p>
+                    <hr>
                     <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">Detail View</a>
                 </div>
             </div>
@@ -93,6 +145,7 @@
                           <p class="card-text">Score {{artwork.vote_ratio}}%</p>
                           <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
                           <p class="card-text">
+                            <p class="card-text">Star{{artwork.star_count}}</p>
                       </div>
                       {% endfor %}
         </div>
@@ -101,7 +154,7 @@
 <br />
 <hr>
 <h2>Instant Feedback</h2>
-<h4>These scores provide an "at a glance" response to the work.</h4>
+<h4>Please bear in mind these "at a glance" responses are provided anonymously, without detailed comments.</h4>
     <div class="container text-center">
         <div class="container"> 
             <table class="table table-sm table-striped">
@@ -121,7 +174,9 @@
                 <td>{{artwork.title}}</td>
                 <td>{{artwork.vote_ratio}}%</td>
                 <td>{{artwork.vote_total}}</td>
-                <td><a href="{% url 'artwork' artwork.id %}">View</td>
+                <td>
+                    
+                    <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">View</a></td>
             </tr>
             {% endfor %}
             </tbody>

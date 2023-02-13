@@ -43,8 +43,11 @@ class Artwork(models.Model):
         ratio = (upVotes / totalVotes) * 100
         self.vote_total = totalVotes
         self.vote_ratio = ratio
+       
 
         self.save()
+
+
 
 
 class Review(models.Model):
