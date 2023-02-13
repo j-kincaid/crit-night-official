@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.core.mail import send_mail
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -117,6 +118,17 @@ TIME_ZONE = "America/Chicago"
 USE_I18N = True
 
 USE_TZ = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'jess42test@gmail.com'
+
+# Use environment variables here
+
+EMAIL_HOST_PASSWORD = 'dmpnbnznsqjeopgk'
+
 
 
 # Static files (CSS, JavaScript, Images)
