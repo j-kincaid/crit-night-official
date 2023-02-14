@@ -3,28 +3,34 @@
 
 <div class ="container text-center">
 
-   <table class="table table-sm table-striped">
-                <thead>
+  <h2>Instant Feedback</h2>
+  <h4>Please bear in mind these "at a glance" responses are provided anonymously, without detailed comments.</h4>
+      <div class="container text-center">
+          <div class="container"> 
+              <table class="table table-sm table-striped">
+              <thead>
+              <tr>
+                  <th scope="col">Artist</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Average Score</th>
+                  <th scope="col">Votes Received</th>
+                  <th scope="col"></th>
+              </tr>
+              </thead>
+              <tbody>
+                  {% for artwork in artworks %}
                   <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Criteria 1</th>
-                    <th scope="col">Criteria 2</th>
-                    <th scope="col">Criteria 3</th>
-                    <th scope="col">Average Score</th>
-                    <th scope="col">Votes Received</th>
+                      <td>{{artwork.owner.name}}</td>
+                      <td>{{artwork.title}}</td>
+                      <td>{{artwork.vote_ratio}}%</td>
+                      <td>{{artwork.vote_total}}</td>
+                      <td>
+                          
+                        <a href="{% url 'artwork' artwork.id %}" class="btn btn-secondary btn-sm">View</a></td>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">{{artwork.title}}</th>
-                    <td>{{artwork.vote_ratio}}%</td>
-                    <td>{{artwork.vote_ratio}}%</td>
-                    <td>{{artwork.vote_ratio}}%</td>
-                    <td>{{artwork.vote_ratio}}%</td>
-                    <td>{{artwork.vote_total}}</td>
-                  </tr>
-                </tbody>
-              </table> 
-
-            </div>
+              {% endfor %}
+              </tbody>
+          </table> 
+          </div>
+      </div>
 {% endblock content %}
