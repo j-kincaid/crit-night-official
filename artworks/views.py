@@ -80,3 +80,9 @@ def deleteArtwork(request, pk):
         return redirect("artworks")
     context = {"object": artwork}
     return render(request, "artworks/delete_template.html", context)
+
+
+def results(request):
+    artworks = Artwork.objects.all()
+    context = {"artworks": artworks}
+    return render(request, "artworks/results.html", context)

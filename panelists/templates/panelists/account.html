@@ -10,6 +10,11 @@
             <div class="col-4 personal">
                 
                 <a href="{% url 'edit-account' %}" class="btn btn-secondary btn-sm">Edit my Account</a>
+                
+                   
+                
+          
+               
                 <img src="{{ profile.profile_image.url }}" class="img-thumbnail" alt="participant profile image" />
                 <h2>{{profile.name}}</h2>
                 <h2>{{profile.role}}</h2>
@@ -46,7 +51,9 @@
 
             <div class="col-4 artwork-list">
                 <h3>Artworks</h3>
-                <a href="{% url 'create-artwork' %}" class="btn btn-secondary btn-sm"> Add Artwork</a>
+{% comment %}                
+                <a href="{% url 'results' %}" class="btn btn-secondary btn-sm">View Results</a>
+             {% endcomment %}
 
             <div class="card" style="width: 18rem;">
             {% for artwork in artworks %}
