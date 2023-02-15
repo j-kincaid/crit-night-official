@@ -24,7 +24,6 @@
             </li>
 
             {% if request.user.is_authenticated %}
-               
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="{% url 'account' %}">My Account</a>
             </li>
@@ -38,10 +37,7 @@
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="{% url 'logout' %}">Log Out</a>
             </li>
-
-            {% comment %} <li class="nav-item">
-              <a href="{% url 'results' %}" class="nav-link active text-white" aria-current="page" >View Results</a>
-            </li> {% endcomment %}
+            
 
             {% else %}
             <li class="nav-item">

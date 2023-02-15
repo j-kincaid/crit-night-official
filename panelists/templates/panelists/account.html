@@ -12,6 +12,11 @@
                 <a href="{% url 'edit-account' %}" class="btn btn-secondary btn-sm">Edit my Account</a>
                 
                    
+            {% if user_contains == 'moderator' %}
+            <li class="nav-item">
+              <a href="{% url 'results' %}" class="nav-link active text-white" aria-current="page" >View Results</a>
+            </li>
+           {% endif %}
                 
           
                
