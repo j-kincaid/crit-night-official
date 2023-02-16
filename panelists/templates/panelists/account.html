@@ -12,11 +12,7 @@
                 <a href="{% url 'edit-account' %}" class="btn btn-secondary btn-sm">Edit my Account</a>
                 
                    
-            {% if user_contains == 'moderator' %}
-            <li class="nav-item">
-              <a href="{% url 'results' %}" class="nav-link active text-white" aria-current="page" >View Results</a>
-            </li>
-           {% endif %}
+
                 
           
                
@@ -56,9 +52,11 @@
 
             <div class="col-4 artwork-list">
                 <h3>Artworks</h3>
-{% comment %}                
-                <a href="{% url 'results' %}" class="btn btn-secondary btn-sm">View Results</a>
-             {% endcomment %}
+                
+
+            <p class="nav-item">
+                <a href="{% url 'results' %}" class="btn btn-secondary btn-sm">View Voting Results</a>
+              </p>
 
             <div class="card" style="width: 18rem;">
             {% for artwork in artworks %}
@@ -79,10 +77,10 @@
               
 
             {% for criteria in profile.criteria_set.all|slice:"5" %}
-            <li class="nav-item">
-              <p class="card-text"><small>{{criteria}}.</small></p>
-            </li>
-          {% endfor %} 
+                <li class="nav-item">
+                <p class="card-text"><small>{{criteria}}.</small></p>
+                </li>
+            {% endfor %} 
             
             {% endfor %}
                 </div>
