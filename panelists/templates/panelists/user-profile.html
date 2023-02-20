@@ -14,20 +14,20 @@
 
           {% if profile.social_insta %}
             <p class="card-text">
-              <a class="card-text" href="{{profile.social_insta}}" target="_blank">instagram</a>
+              <a class="card-text btn btn-secondary btn-sm" href="{{profile.social_insta}}" target="_blank">instagram</a>
             </p>
           {% endif %}
 
           {% if profile.social_twitter %}
             <p class="card-text">
-              <a class="card-text" href="{{profile.social_twitter}}" target="_blank">twitter</a>
+              <a class="card-text btn btn-secondary btn-sm" href="{{profile.social_twitter}}" target="_blank">twitter</a>
             </p>
           {% endif %}
 
           
           {% if profile.social_other %}
           <p class="card-text">
-            <a class="card-text" href="{{profile.social_other}}" target="_blank"></a>
+            <a class="card-text btn btn-secondary btn-sm" href="{{profile.social_other}}" target="_blank"></a>
           </p>
           {% endif %}
 
@@ -43,22 +43,18 @@
               <hr>
               {% endif %}
           <div class="container">
-            <h3>Works in my conversations<h3>
+            <h3>My Artworks<h3>
               <div class="row row-cols-1 row-cols-md-3 g-4">
               {% for artwork in profile.artwork_set.all %}
                   
               <div class="card" style="width: 18rem;">
                     <a href="{% url 'artwork' artwork.id %}"
                       <img style="max-width: 50px;" src="{{ artwork.featured_image.url }}"></a>
-                        <p class="card-text">
-                          <h3>{{artwork.title}}</h3>
-                        </p>
                           <img src="{{ artwork.featured_image.url }}" class="card-img-top img-thumbnail"  alt="detail of artwork">
                           <div class="card-body">
                               <h5 class="card-title">{{artwork.title}}</h5>
-                          <p class="card-text">Score {{artwork.vote_ratio}}%</p>
-                          <p class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</p>
-                          <p class="card-text">
+                          <h6 class="card-text">Score {{artwork.vote_ratio}}%</h6>
+                          <h6 class="card-text">{{artwork.vote_total}} Vote{{artwork.vote_total|pluralize:"s"}}</h6>
                       </div>
                   </div>
               {% endfor %}

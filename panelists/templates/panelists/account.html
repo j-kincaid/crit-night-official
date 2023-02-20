@@ -26,37 +26,34 @@
                 <ul>
                     {% if profile.website %}
                         <li>
-                            <a href="{{profile.website}}" target="_blank">Website</a>
+                            <a class="card-text btn btn-secondary btn-sm" href="{{profile.website}}" target="_blank">Website</a>
                         </li>
                     {% endif %}
 
                     {% if profile.social_insta %}
                         <li>
-                            <a title="Twitter" href="{{profile.social_insta}}" target="_blank">Instagram</a>
+                            <a class="card-text btn btn-secondary btn-sm" title="Twitter" href="{{profile.social_insta}}" target="_blank">Instagram</a>
                         </li>
                     {% endif %}
 
                     {% if profile.social_twitter %}
                         <li>
-                            <a title="Twitter" href="{{profile.social_twitter}}" target="_blank">Twitter</a>
+                            <a class="card-text btn btn-secondary btn-sm" title="Twitter" href="{{profile.social_twitter}}" target="_blank">Twitter</a>
                         </li>
                     {% endif %}
 
                     {% if profile.social_other %}
                         <li>
-                            <a title="LinkedIn" href="{{profile.social_other}}" target="_blank">Other Social</a>
+                            <a class="card-text btn btn-secondary btn-sm" title="LinkedIn" href="{{profile.social_other}}" target="_blank">Other Social</a>
                         </li>
                     {% endif %}
                 </ul>
             </div>
 
             <div class="col-4 artwork-list">
-                <h3>Artworks</h3>
+                <h4>My Artworks</h4>
                 
 
-            <p class="nav-item">
-                <a href="{% url 'results' %}" class="btn btn-secondary btn-sm">View Voting Results</a>
-              </p>
 
             <div class="card" style="width: 18rem;">
             {% for artwork in artworks %}

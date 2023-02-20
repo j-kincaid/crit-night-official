@@ -3,12 +3,12 @@
 
 <div class="container-md">
 <h2>Message Form</h2>
-    <h5></h5>
         <hr>
-        <a class="button" href="{% url 'user-profile' recipient.id %}">recipient</a>
     <form action="" method="POST" enctype="multipart/form-data">
         
-    <a href="" class="btn btn-secondary btn-sm">back</a>
+        <a class="btn btn-secondary btn-sm" href="{% url 'user-profile' recipient.id %}">recipient</a>
+        <a href="" class="btn btn-secondary btn-sm">back</a>
+        <hr>
         {% csrf_token %}
         {% if request.user.is_authenticated == False %}
         <div class="form-field">

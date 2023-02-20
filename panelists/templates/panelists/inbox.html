@@ -1,10 +1,10 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<div class="container-fluid">
+<div class="container-md">
+    <h2>Messages</h2>
     <a href="{% url 'account' %}" class="btn btn-secondary btn-sm">back to account</a>
-<h2>Messages</h2>
-<h3>New Messages(<span>{{unreadCount}}</span>)</h3>
+<h4>New Messages(<span>{{unreadCount}}</span>)</h4>
   <ul class="list-group">
     {% for message in messageRequests %}
         {% if message.is_read == False %}
@@ -14,8 +14,8 @@
         {% endif %}
 
         <a href="{% url 'message' message.id %}">
-        <span class="list-group-item">Sender: {{message.name}}</span>
-        <spanclass="list-group-item">Subject: {{message.subject}}</spanclass=>
+        <span class="list-group-item list-group-item-info">Sender: {{message.name}}</span>
+        <span class="list-group-item list-group-item-action">Subject: {{message.subject}}</span>
         <span class="list-group-item">Date: {{message.created}}</span>
     </a>
 </li>
