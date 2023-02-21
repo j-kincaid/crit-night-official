@@ -30,12 +30,13 @@
                           <li class="nav-item">
                             <p class="card-text"><small>{{profile.brief_bio|slice:"110"}}...</small></p>
                           </li>
+                          
 
-                        {% endif %} 
                         <li>
                           <a href="{% url 'user-profile' profile.id %}" class="btn btn-secondary btn-sm">Participant Profile</a>
                         </li>
                       </ul>
+                      {% endif %}
                 </div>
               </div>
             {% endfor %}
