@@ -10,6 +10,7 @@ urlpatterns = [
     path("", include("artworks.urls")),
     path("panelists/", include("panelists.urls")),
     path("artworks/", include("artworks.urls")),
+    path("api/", include("api.urls")),
     path(
         "reset_password/",
         auth_views.PasswordResetView.as_view(template_name="reset_password.html"),

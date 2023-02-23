@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "artworks.apps.ArtworksConfig",
     "panelists.apps.PanelistsConfig",
     "widget_tweaks",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
