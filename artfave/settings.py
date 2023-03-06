@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "artworks.apps.ArtworksConfig",
     "panelists.apps.PanelistsConfig",
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
